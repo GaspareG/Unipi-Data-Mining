@@ -1,13 +1,13 @@
-====== Credit Card Default Dataset ======
+# Credit Card Default Dataset
 This research aimed at the case of customers default payments in Taiwan and compares the predictive accuracy of probability of default among six data mining methods. From the perspective of risk management the binary result of classification will valuable for identifying credible or not credible clients.
 
-====== File descriptions ======
+# File descriptions
 
  - *credit_default_train.csv* - the training set
  - *credit_default_test.csv* - the test set
  - *credit_default_sample_submission.csv* - a sample submission file in the correct format
 
-====== Data fields ======
+# Data fields
 
  - *index* - Id unique to a given row (only in test)
  - *limit* - Amount of the given credit (NT dollar): it includes both the individual consumer credit and his/her family (supplementary) credit.
