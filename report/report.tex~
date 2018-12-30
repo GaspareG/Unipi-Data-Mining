@@ -1,8 +1,95 @@
 \documentclass[11pt,a4paper]{report}
 
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=4cm]{geometry}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{document}
-\title{How to Structure a LaTeX Document}
-\author{Andrew Roberts}
-\date{December 2004}
-\maketitle
+
+\title{\textbf{Analysis of the dataset\\\textit{Credit Card Default}}}
+\author{Gaspare Ferraro (520549)\\Javad	Khalili (546677)\\Mario	Matovic (583449)}
+\date{\today}
+
+% Definition of \maketitle
+\makeatletter
+    \begin{titlepage}
+        \begin{center}
+            { . }\\[20ex]
+            {\huge \bfseries  \@title }\\[10ex] 
+            {\LARGE  \@author}\\[10ex] 
+            {\large \@date}\\[45ex]
+            
+            \noindent
+            \begin{minipage}[c]{0.25\linewidth}
+              \includegraphics[width=0.9\linewidth]{img/cherubino}\\[4ex]
+            \end{minipage} % no space if you would like to put them side by side
+            \begin{minipage}[c]{0.7\linewidth}
+              University of Pisa\\
+              Exam: Data Mining\\
+              Year: 2018/2019\\
+              Instructors: Dino Pedreschi, Anna Monreale, Riccardo Guidotti
+            \end{minipage}
+
+        \end{center}
+    \end{titlepage}
+\makeatother
+\thispagestyle{empty}
+\newpage
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introduction}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Data Understanding}
+
+\section{Data semantics}
+\section{Distribution of the variables and statistics}
+\section{Assessing data quality}
+\section{Variables transformations}
+\section{Correlations and redundant variables}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Clustering}
+
+\section{K-means}
+\subsection{Choice of attributes and distance function}
+\subsection{Choise of the best value of k}
+\subsection{Cluster analysis}
+
+\section{DBSCAN}
+\subsection{Choice of attributes and distance function}
+\subsection{Study of the clustering parameters}
+\subsection{Characterization and interpretation of the obtained clusters}
+
+\section{Hierarchical clustering}
+\subsection{Choice of attributes and distance function}
+\subsection{Discussion of dendograms using different algorithms}
+
+\section{Evaluation of clustering approaches and comparison of the clustering obtained}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Association Rules Mining}
+
+\section{Frequent patterns extraction with different parameters}
+\section{Discussion of the most interesting frequent patterns}
+\section{Association rules extraction with different values of confidence}
+\section{Discussion of the most interesting rules}
+\section{Use the most meaningful rules to replace missing values}
+\section{Use the most meaningful rules to predict credit card defaults}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Classification}
+
+\section{Choice of attributes for the decision trees}
+\section{Decision trees interpretation and validation with test and training set}
+\section{Discussion of the best prediction model}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
