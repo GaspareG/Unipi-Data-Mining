@@ -1,0 +1,42 @@
+===================================================================
+1. intro, cosa farò
+===================================================================
+2. come è fatto il dataset
+
+2.1 analisi semantica e distribuzione dei dati
+    - per ogni attributo grafico, statistiche e cose interessanti
+    
+2.2 qualità dei dati
+	duplicati e outliers
+	normalizzare gli attributi e boxplot attributi (z-score)
+	
+2.3 trasformazione variabili
+    - attributi binari in 0/1
+    - normalizzazione con z-score per outliers
+    - normalizzazione con min-max scaling per clustering
+    - attributi continui raggruppati in bin
+    
+2.4 analisi e correlazione
+   - matrice correlazione
+   - rimozione attributi ridondanti
+===================================================================
+3.1 K means
+3.1.1 scelta attributi (solo continui)
+3.1.2 scelta parametro k (grafico k-silhouette + k-sse)
+3.1.3 analisi cluster
+
+3.2 dbscan
+3.2.1 scelta attributi (solo continui ancora)
+3.2.2 analisi parametri (epsilon e min-points)
+      grafico K-silhouette
+      grafico record orinati per distanza - distanza dal k
+      grafico record orinati per distanza - distanza dal k scelto
+3.2.3 analisi cluster ottenuti
+
+3.3 gerarchico
+3.3.1 scelta attributi e funzione distanza
+3.3.2 discussione dendogrammi dei vari algoritmi
+
+3.4 comparazione fra i metodi di clustering
+===================================================================
+

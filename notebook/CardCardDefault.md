@@ -5,16 +5,16 @@
 import math
 import numpy as np
 import pandas as pd
-import scipy.stats as stats
+import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 import seaborn as sns
-from matplotlib import style
-import matplotlib.mlab as mlab
+import scipy.stats as stats
 
-
-from collections import defaultdict
 from scipy.stats.stats import pearsonr
+from matplotlib import style
+from cycler import cycler
+from collections import defaultdict
 
 style.use("seaborn-pastel")
 plt.rcParams['axes.facecolor'] = 'white'
@@ -22,7 +22,19 @@ plt.rcParams['figure.facecolor'] = 'white'
 plt.rcParams['axes.linewidth'] = 1
 plt.rcParams['axes.axisbelow'] = True
 plt.rcParams['axes.grid'] = True
+
+
+plt.rc('axes', prop_cycle=(cycler('color', ['#d32f2f', '#388E3C', 'b', 'y'])))
+plt.rcParams['axes.prop_cycle']
+
 ```
+
+
+
+
+<table><th>'color'</th><tr><td>'#d32f2f'</td></tr><tr><td>'#388E3C'</td></tr><tr><td>'b'</td></tr><tr><td>'y'</td></tr></table>
+
+
 
 Load dataset
 ===============
@@ -500,17 +512,15 @@ Credit default
 
 
 ```python
-cc['credit_default'].describe()
+cc['credit_default'].value_counts()
 ```
 
 
 
 
-    count     10000
-    unique        2
-    top          no
-    freq       7788
-    Name: credit_default, dtype: object
+    no     7788
+    yes    2212
+    Name: credit_default, dtype: int64
 
 
 
@@ -597,6 +607,11 @@ cc.isnull().sum()['sex']
 
 
 ```python
+#cc['sex'] = cc['sex'].fillna('nan')
+```
+
+
+```python
 sex_default = pd.crosstab(cc['sex'], cc['credit_default'])
 sex_default
 ```
@@ -642,6 +657,11 @@ sex_default
       <td>2904</td>
       <td>964</td>
     </tr>
+    <tr>
+      <th>nan</th>
+      <td>81</td>
+      <td>19</td>
+    </tr>
   </tbody>
 </table>
 </div>
@@ -658,7 +678,7 @@ plt.show()
 ```
 
 
-![png](CardCardDefault_files/CardCardDefault_17_0.png)
+![png](CardCardDefault_files/CardCardDefault_18_0.png)
 
 
 
@@ -708,6 +728,11 @@ sex_default_norm
       <td>0.750776</td>
       <td>0.249224</td>
     </tr>
+    <tr>
+      <th>nan</th>
+      <td>0.810000</td>
+      <td>0.190000</td>
+    </tr>
   </tbody>
 </table>
 </div>
@@ -724,7 +749,7 @@ plt.show()
 ```
 
 
-![png](CardCardDefault_files/CardCardDefault_19_0.png)
+![png](CardCardDefault_files/CardCardDefault_20_0.png)
 
 
 Education
@@ -776,6 +801,11 @@ cc.isnull().sum()['education']
 
 
 ```python
+#cc['education'] = cc['education'].fillna('nan')
+```
+
+
+```python
 education_default = pd.crosstab(cc['education'], cc['credit_default'])
 education_default
 ```
@@ -822,6 +852,11 @@ education_default
       <td>386</td>
     </tr>
     <tr>
+      <th>nan</th>
+      <td>121</td>
+      <td>6</td>
+    </tr>
+    <tr>
       <th>others</th>
       <td>34</td>
       <td>2</td>
@@ -847,7 +882,7 @@ plt.show()
 ```
 
 
-![png](CardCardDefault_files/CardCardDefault_25_0.png)
+![png](CardCardDefault_files/CardCardDefault_27_0.png)
 
 
 
@@ -898,6 +933,11 @@ education_default_norm
       <td>0.230861</td>
     </tr>
     <tr>
+      <th>nan</th>
+      <td>0.952756</td>
+      <td>0.047244</td>
+    </tr>
+    <tr>
       <th>others</th>
       <td>0.944444</td>
       <td>0.055556</td>
@@ -923,7 +963,7 @@ plt.show()
 ```
 
 
-![png](CardCardDefault_files/CardCardDefault_27_0.png)
+![png](CardCardDefault_files/CardCardDefault_29_0.png)
 
 
 Status
@@ -974,6 +1014,11 @@ cc.isnull().sum()['status']
 
 
 ```python
+#cc['status'] = cc['status'].fillna('nan')
+```
+
+
+```python
 status_default = pd.crosstab(cc['status'], cc['credit_default'])
 status_default
 ```
@@ -1015,6 +1060,11 @@ status_default
       <td>869</td>
     </tr>
     <tr>
+      <th>nan</th>
+      <td>1392</td>
+      <td>430</td>
+    </tr>
+    <tr>
       <th>others</th>
       <td>50</td>
       <td>25</td>
@@ -1040,7 +1090,7 @@ plt.show()
 ```
 
 
-![png](CardCardDefault_files/CardCardDefault_33_0.png)
+![png](CardCardDefault_files/CardCardDefault_36_0.png)
 
 
 
@@ -1086,6 +1136,11 @@ status_default_norm
       <td>0.231302</td>
     </tr>
     <tr>
+      <th>nan</th>
+      <td>0.763996</td>
+      <td>0.236004</td>
+    </tr>
+    <tr>
       <th>others</th>
       <td>0.666667</td>
       <td>0.333333</td>
@@ -1111,7 +1166,7 @@ plt.show()
 ```
 
 
-![png](CardCardDefault_files/CardCardDefault_35_0.png)
+![png](CardCardDefault_files/CardCardDefault_38_0.png)
 
 
 Age
@@ -1169,8 +1224,7 @@ len(ages_unique)
 
 
 ```python
-ages_invalid = cc[cc['age']==-1]
-ages_invalid.shape[0]
+cc[cc['age']==-1]['age'].size
 ```
 
 
@@ -1183,7 +1237,7 @@ ages_invalid.shape[0]
 
 ```python
 ages_valid = cc[cc['age']>0]
-ages_valid.shape[0]
+ages_valid['age'].size
 ```
 
 
@@ -1210,6 +1264,185 @@ ages_valid['age'].describe()
     75%        41.000000
     max        75.000000
     Name: age, dtype: float64
+
+
+
+
+```python
+#ages_valid = cc
+#ages_valid['age'] = ages_valid['age'].apply(lambda x: 0 if x == -1 else x)
+ages_valid.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>limit</th>
+      <th>sex</th>
+      <th>education</th>
+      <th>status</th>
+      <th>age</th>
+      <th>ps-sep</th>
+      <th>ps-aug</th>
+      <th>ps-jul</th>
+      <th>ps-jun</th>
+      <th>ps-may</th>
+      <th>...</th>
+      <th>ba-jun</th>
+      <th>ba-may</th>
+      <th>ba-apr</th>
+      <th>pa-sep</th>
+      <th>pa-aug</th>
+      <th>pa-jul</th>
+      <th>pa-jun</th>
+      <th>pa-may</th>
+      <th>pa-apr</th>
+      <th>credit_default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>50000</td>
+      <td>male</td>
+      <td>graduate school</td>
+      <td>nan</td>
+      <td>25</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>49535</td>
+      <td>30358</td>
+      <td>30302</td>
+      <td>2130</td>
+      <td>1905</td>
+      <td>1811</td>
+      <td>1100</td>
+      <td>1100</td>
+      <td>1200</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>200000</td>
+      <td>male</td>
+      <td>university</td>
+      <td>married</td>
+      <td>54</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>...</td>
+      <td>6335</td>
+      <td>4616</td>
+      <td>7956</td>
+      <td>10120</td>
+      <td>7852</td>
+      <td>6336</td>
+      <td>4622</td>
+      <td>7956</td>
+      <td>5499</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>60000</td>
+      <td>female</td>
+      <td>high school</td>
+      <td>married</td>
+      <td>36</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>48738</td>
+      <td>49601</td>
+      <td>52773</td>
+      <td>1788</td>
+      <td>0</td>
+      <td>1894</td>
+      <td>1801</td>
+      <td>3997</td>
+      <td>0</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>260000</td>
+      <td>female</td>
+      <td>university</td>
+      <td>married</td>
+      <td>44</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>...</td>
+      <td>1698</td>
+      <td>0</td>
+      <td>5062</td>
+      <td>1106</td>
+      <td>2527</td>
+      <td>1698</td>
+      <td>0</td>
+      <td>5062</td>
+      <td>0</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>50000</td>
+      <td>female</td>
+      <td>graduate school</td>
+      <td>single</td>
+      <td>29</td>
+      <td>3</td>
+      <td>3</td>
+      <td>2</td>
+      <td>3</td>
+      <td>2</td>
+      <td>...</td>
+      <td>49104</td>
+      <td>51044</td>
+      <td>50933</td>
+      <td>0</td>
+      <td>2800</td>
+      <td>0</td>
+      <td>3000</td>
+      <td>800</td>
+      <td>3000</td>
+      <td>yes</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 24 columns</p>
+</div>
 
 
 
@@ -1318,7 +1551,6 @@ ages_default
 
 
 ```python
-
 fig = plt.figure()
 ax1 = fig.add_subplot(111)
 
@@ -1341,8 +1573,13 @@ plt.show()
 
 ```
 
+    /usr/lib/python3.7/site-packages/matplotlib/figure.py:98: MatplotlibDeprecationWarning: 
+    Adding an axes using the same arguments as a previous axes currently reuses the earlier instance.  In a future version, a new instance will always be created and returned.  Meanwhile, this warning can be suppressed, and the future behavior ensured, by passing a unique label to each axes instance.
+      "Adding an axes using the same arguments as a previous axes "
 
-![png](CardCardDefault_files/CardCardDefault_44_0.png)
+
+
+![png](CardCardDefault_files/CardCardDefault_48_1.png)
 
 
 
@@ -1454,11 +1691,12 @@ ages_default_norm.plot(kind='bar', stacked=True, title='Credit card default by c
 plt.xlabel('Decade')
 plt.ylabel('Default rate normalized')
 plt.xticks(rotation=0)
+plt.legend(loc='lower right')
 plt.show()
 ```
 
 
-![png](CardCardDefault_files/CardCardDefault_46_0.png)
+![png](CardCardDefault_files/CardCardDefault_50_0.png)
 
 
 Limit
@@ -1652,7 +1890,7 @@ plt.show()
 ```
 
 
-![png](CardCardDefault_files/CardCardDefault_52_0.png)
+![png](CardCardDefault_files/CardCardDefault_56_0.png)
 
 
 
@@ -1788,7 +2026,7 @@ plt.show()
 ```
 
 
-![png](CardCardDefault_files/CardCardDefault_54_0.png)
+![png](CardCardDefault_files/CardCardDefault_58_0.png)
 
 
 Payment status
@@ -2066,7 +2304,7 @@ plt.show()
 ```
 
 
-![png](CardCardDefault_files/CardCardDefault_60_0.png)
+![png](CardCardDefault_files/CardCardDefault_64_0.png)
 
 
 
@@ -2183,7 +2421,7 @@ plt.show()
 ```
 
 
-![png](CardCardDefault_files/CardCardDefault_62_0.png)
+![png](CardCardDefault_files/CardCardDefault_66_0.png)
 
 
 Bill Amount
@@ -2487,7 +2725,7 @@ plt.show()
 ```
 
 
-![png](CardCardDefault_files/CardCardDefault_68_0.png)
+![png](CardCardDefault_files/CardCardDefault_72_0.png)
 
 
 
@@ -2634,7 +2872,7 @@ plt.show()
 ```
 
 
-![png](CardCardDefault_files/CardCardDefault_70_0.png)
+![png](CardCardDefault_files/CardCardDefault_74_0.png)
 
 
 Payment Amount
@@ -2794,7 +3032,7 @@ cc.isnull().sum()[pa_var]
 pa_default = []
 
 for m in pa_var:
-    pa_default.append(pd.crosstab(cc[m]//50000*50, cc['credit_default']))
+    pa_default.append(pd.crosstab(cc[m]//50000*50000, cc['credit_default']))
     
 pa_default[4]
 ```
@@ -2836,52 +3074,52 @@ pa_default[4]
       <td>2203</td>
     </tr>
     <tr>
-      <th>50</th>
+      <th>50000</th>
       <td>83</td>
       <td>6</td>
     </tr>
     <tr>
-      <th>100</th>
+      <th>100000</th>
       <td>40</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>150</th>
+      <th>150000</th>
       <td>16</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>200</th>
+      <th>200000</th>
       <td>6</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>250</th>
+      <th>250000</th>
       <td>2</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>300</th>
+      <th>300000</th>
       <td>2</td>
       <td>2</td>
     </tr>
     <tr>
-      <th>350</th>
+      <th>350000</th>
       <td>3</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>400</th>
+      <th>400000</th>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>550</th>
+      <th>550000</th>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>1200</th>
+      <th>1200000</th>
       <td>1</td>
       <td>0</td>
     </tr>
@@ -2908,7 +3146,7 @@ plt.show()
 ```
 
 
-![png](CardCardDefault_files/CardCardDefault_76_0.png)
+![png](CardCardDefault_files/CardCardDefault_80_0.png)
 
 
 
@@ -2958,37 +3196,37 @@ pa_default_norm[1]
       <td>0.223338</td>
     </tr>
     <tr>
-      <th>50</th>
+      <th>50000</th>
       <td>0.931034</td>
       <td>0.068966</td>
     </tr>
     <tr>
-      <th>100</th>
+      <th>100000</th>
       <td>0.857143</td>
       <td>0.142857</td>
     </tr>
     <tr>
-      <th>150</th>
+      <th>150000</th>
       <td>1.000000</td>
       <td>0.000000</td>
     </tr>
     <tr>
-      <th>200</th>
+      <th>200000</th>
       <td>1.000000</td>
       <td>0.000000</td>
     </tr>
     <tr>
-      <th>250</th>
+      <th>250000</th>
       <td>1.000000</td>
       <td>0.000000</td>
     </tr>
     <tr>
-      <th>300</th>
+      <th>300000</th>
       <td>1.000000</td>
       <td>0.000000</td>
     </tr>
     <tr>
-      <th>400</th>
+      <th>400000</th>
       <td>1.000000</td>
       <td>0.000000</td>
     </tr>
@@ -3015,7 +3253,7 @@ plt.show()
 ```
 
 
-![png](CardCardDefault_files/CardCardDefault_78_0.png)
+![png](CardCardDefault_files/CardCardDefault_82_0.png)
 
 
 Correlation matrix
@@ -3042,7 +3280,7 @@ plt.xticks(rotation=315)
 
 
 
-![png](CardCardDefault_files/CardCardDefault_80_1.png)
+![png](CardCardDefault_files/CardCardDefault_84_1.png)
 
 
 
@@ -3144,17 +3382,20 @@ ba_df.head()
 f, ax = plt.subplots(figsize=(10, 8))
 corr = ba_df.corr()
 sns.heatmap(corr, cmap="coolwarm", vmin=-1, vmax=1, annot=True, mask=np.zeros_like(corr, dtype=np.bool), square=True, ax=ax)
+plt.xticks(rotation=315)
+plt.yticks(rotation=0)
 ```
 
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7fc69162c4e0>
+    (array([0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5]),
+     <a list of 7 Text yticklabel objects>)
 
 
 
 
-![png](CardCardDefault_files/CardCardDefault_82_1.png)
+![png](CardCardDefault_files/CardCardDefault_86_1.png)
 
 
 Data quality
@@ -3162,29 +3403,1636 @@ Data quality
 
 
 ```python
-#cc['pa-apr'].describe()
+q1 = cc['age'].describe()["25%"]
+q3 = cc['age'].describe()["75%"]
+
+cc['age'].describe()
 ```
+
+
+
+
+    count    10000.000000
+    mean        32.115300
+    std         13.617524
+    min          0.000000
+    25%         26.000000
+    50%         33.000000
+    75%         40.000000
+    max         75.000000
+    Name: age, dtype: float64
+
+
 
 
 ```python
-#len(cc[cc['limit'] > 240000])
+len(cc[cc['age'] < (q1 - 1*(q3-q1))]) + len(cc[cc['age'] > (q3 + 1*(q3-q1))]) 
 ```
+
+
+
+
+    1266
+
+
 
 
 ```python
-#boxplot = cc.boxplot(column=['pa-apr'])
+boxplot = cc.boxplot(column=['age'])
 ```
+
+
+![png](CardCardDefault_files/CardCardDefault_90_0.png)
+
 
 Variable transformation
 ------------
 
 
 ```python
+print('Sex ' + str(cc.isnull().sum()['sex']))
+print('Education ' + str(cc.isnull().sum()['education']))
+print('Status ' + str(cc.isnull().sum()['status']))
+print('Age ' + str(cc[cc['age'] == -1]['age'].size))
+
+cc.isnull().sum()
+```
+
+    Sex 0
+    Education 0
+    Status 0
+    Age 0
+
+
+
+
+
+    limit             0
+    sex               0
+    education         0
+    status            0
+    age               0
+    ps-sep            0
+    ps-aug            0
+    ps-jul            0
+    ps-jun            0
+    ps-may            0
+    ps-apr            0
+    ba-sep            0
+    ba-aug            0
+    ba-jul            0
+    ba-jun            0
+    ba-may            0
+    ba-apr            0
+    pa-sep            0
+    pa-aug            0
+    pa-jul            0
+    pa-jun            0
+    pa-may            0
+    pa-apr            0
+    credit_default    0
+    dtype: int64
+
+
+
+
+```python
+cc.head(n=1000)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>limit</th>
+      <th>sex</th>
+      <th>education</th>
+      <th>status</th>
+      <th>age</th>
+      <th>ps-sep</th>
+      <th>ps-aug</th>
+      <th>ps-jul</th>
+      <th>ps-jun</th>
+      <th>ps-may</th>
+      <th>...</th>
+      <th>ba-jun</th>
+      <th>ba-may</th>
+      <th>ba-apr</th>
+      <th>pa-sep</th>
+      <th>pa-aug</th>
+      <th>pa-jul</th>
+      <th>pa-jun</th>
+      <th>pa-may</th>
+      <th>pa-apr</th>
+      <th>credit_default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>50000</td>
+      <td>male</td>
+      <td>graduate school</td>
+      <td>nan</td>
+      <td>25</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>49535</td>
+      <td>30358</td>
+      <td>30302</td>
+      <td>2130</td>
+      <td>1905</td>
+      <td>1811</td>
+      <td>1100</td>
+      <td>1100</td>
+      <td>1200</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>200000</td>
+      <td>male</td>
+      <td>university</td>
+      <td>married</td>
+      <td>54</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>...</td>
+      <td>6335</td>
+      <td>4616</td>
+      <td>7956</td>
+      <td>10120</td>
+      <td>7852</td>
+      <td>6336</td>
+      <td>4622</td>
+      <td>7956</td>
+      <td>5499</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>30000</td>
+      <td>female</td>
+      <td>high school</td>
+      <td>married</td>
+      <td>0</td>
+      <td>2</td>
+      <td>3</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>...</td>
+      <td>30496</td>
+      <td>29731</td>
+      <td>29047</td>
+      <td>0</td>
+      <td>1700</td>
+      <td>1100</td>
+      <td>3</td>
+      <td>1053</td>
+      <td>1303</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>140000</td>
+      <td>female</td>
+      <td>university</td>
+      <td>single</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>25224</td>
+      <td>26855</td>
+      <td>23783</td>
+      <td>2000</td>
+      <td>2000</td>
+      <td>900</td>
+      <td>2000</td>
+      <td>10000</td>
+      <td>5000</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>60000</td>
+      <td>female</td>
+      <td>high school</td>
+      <td>married</td>
+      <td>36</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>48738</td>
+      <td>49601</td>
+      <td>52773</td>
+      <td>1788</td>
+      <td>0</td>
+      <td>1894</td>
+      <td>1801</td>
+      <td>3997</td>
+      <td>0</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>260000</td>
+      <td>female</td>
+      <td>university</td>
+      <td>married</td>
+      <td>44</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>...</td>
+      <td>1698</td>
+      <td>0</td>
+      <td>5062</td>
+      <td>1106</td>
+      <td>2527</td>
+      <td>1698</td>
+      <td>0</td>
+      <td>5062</td>
+      <td>0</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>50000</td>
+      <td>female</td>
+      <td>graduate school</td>
+      <td>single</td>
+      <td>29</td>
+      <td>3</td>
+      <td>3</td>
+      <td>2</td>
+      <td>3</td>
+      <td>2</td>
+      <td>...</td>
+      <td>49104</td>
+      <td>51044</td>
+      <td>50933</td>
+      <td>0</td>
+      <td>2800</td>
+      <td>0</td>
+      <td>3000</td>
+      <td>800</td>
+      <td>3000</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>30000</td>
+      <td>female</td>
+      <td>graduate school</td>
+      <td>single</td>
+      <td>24</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>2</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>248</td>
+      <td>248</td>
+      <td>-150</td>
+      <td>3285</td>
+      <td>0</td>
+      <td>248</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>10000</td>
+      <td>male</td>
+      <td>university</td>
+      <td>single</td>
+      <td>24</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>7546</td>
+      <td>9260</td>
+      <td>10000</td>
+      <td>3000</td>
+      <td>2000</td>
+      <td>3000</td>
+      <td>2000</td>
+      <td>1000</td>
+      <td>0</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>200000</td>
+      <td>male</td>
+      <td>university</td>
+      <td>married</td>
+      <td>55</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>...</td>
+      <td>191363</td>
+      <td>188683</td>
+      <td>196057</td>
+      <td>0</td>
+      <td>14000</td>
+      <td>7000</td>
+      <td>0</td>
+      <td>10000</td>
+      <td>5000</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>260000</td>
+      <td>female</td>
+      <td>graduate school</td>
+      <td>single</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>93369</td>
+      <td>82476</td>
+      <td>73789</td>
+      <td>10005</td>
+      <td>4026</td>
+      <td>3481</td>
+      <td>141</td>
+      <td>20074</td>
+      <td>60308</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>310000</td>
+      <td>female</td>
+      <td>graduate school</td>
+      <td>married</td>
+      <td>37</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>7443</td>
+      <td>4221</td>
+      <td>8172</td>
+      <td>4373</td>
+      <td>26863</td>
+      <td>7443</td>
+      <td>0</td>
+      <td>8172</td>
+      <td>31362</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>120000</td>
+      <td>female</td>
+      <td>university</td>
+      <td>married</td>
+      <td>27</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>...</td>
+      <td>80907</td>
+      <td>79219</td>
+      <td>77809</td>
+      <td>4326</td>
+      <td>3000</td>
+      <td>9000</td>
+      <td>0</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>150000</td>
+      <td>female</td>
+      <td>graduate school</td>
+      <td>nan</td>
+      <td>30</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>...</td>
+      <td>1500</td>
+      <td>18439</td>
+      <td>1381</td>
+      <td>4908</td>
+      <td>0</td>
+      <td>0</td>
+      <td>18439</td>
+      <td>1381</td>
+      <td>0</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>50000</td>
+      <td>female</td>
+      <td>graduate school</td>
+      <td>single</td>
+      <td>26</td>
+      <td>1</td>
+      <td>-2</td>
+      <td>-2</td>
+      <td>-2</td>
+      <td>-1</td>
+      <td>...</td>
+      <td>-1</td>
+      <td>349</td>
+      <td>350</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>350</td>
+      <td>351</td>
+      <td>4076</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>450000</td>
+      <td>female</td>
+      <td>university</td>
+      <td>married</td>
+      <td>42</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>24711</td>
+      <td>33111</td>
+      <td>50885</td>
+      <td>7272</td>
+      <td>8764</td>
+      <td>9823</td>
+      <td>11123</td>
+      <td>20274</td>
+      <td>5374</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>320000</td>
+      <td>male</td>
+      <td>university</td>
+      <td>single</td>
+      <td>37</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>88585</td>
+      <td>101546</td>
+      <td>41685</td>
+      <td>5001</td>
+      <td>92586</td>
+      <td>5001</td>
+      <td>15001</td>
+      <td>3011</td>
+      <td>6001</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>100000</td>
+      <td>male</td>
+      <td>university</td>
+      <td>single</td>
+      <td>30</td>
+      <td>2</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>3</td>
+      <td>...</td>
+      <td>93580</td>
+      <td>91181</td>
+      <td>93563</td>
+      <td>4900</td>
+      <td>5900</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4000</td>
+      <td>3200</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>500000</td>
+      <td>male</td>
+      <td>graduate school</td>
+      <td>married</td>
+      <td>46</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>159284</td>
+      <td>112078</td>
+      <td>136341</td>
+      <td>57498</td>
+      <td>120899</td>
+      <td>101500</td>
+      <td>30418</td>
+      <td>80668</td>
+      <td>50384</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>70000</td>
+      <td>male</td>
+      <td>graduate school</td>
+      <td>married</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>50756</td>
+      <td>50843</td>
+      <td>46727</td>
+      <td>3500</td>
+      <td>15000</td>
+      <td>3000</td>
+      <td>2000</td>
+      <td>1840</td>
+      <td>1798</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>200000</td>
+      <td>female</td>
+      <td>university</td>
+      <td>single</td>
+      <td>34</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-2</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>13011</td>
+      <td>12000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>107918</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>500000</td>
+      <td>female</td>
+      <td>graduate school</td>
+      <td>nan</td>
+      <td>37</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>71055</td>
+      <td>61248</td>
+      <td>40737</td>
+      <td>3032</td>
+      <td>3200</td>
+      <td>1946</td>
+      <td>1734</td>
+      <td>2000</td>
+      <td>4128</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>350000</td>
+      <td>male</td>
+      <td>university</td>
+      <td>married</td>
+      <td>47</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>...</td>
+      <td>291422</td>
+      <td>279294</td>
+      <td>276594</td>
+      <td>0</td>
+      <td>21300</td>
+      <td>10000</td>
+      <td>0</td>
+      <td>9500</td>
+      <td>9500</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>210000</td>
+      <td>female</td>
+      <td>university</td>
+      <td>single</td>
+      <td>53</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>...</td>
+      <td>390</td>
+      <td>390</td>
+      <td>390</td>
+      <td>390</td>
+      <td>390</td>
+      <td>390</td>
+      <td>390</td>
+      <td>390</td>
+      <td>390</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>50000</td>
+      <td>male</td>
+      <td>high school</td>
+      <td>married</td>
+      <td>51</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>...</td>
+      <td>44350</td>
+      <td>43517</td>
+      <td>46821</td>
+      <td>1634</td>
+      <td>2038</td>
+      <td>4685</td>
+      <td>0</td>
+      <td>3982</td>
+      <td>0</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>90000</td>
+      <td>female</td>
+      <td>high school</td>
+      <td>nan</td>
+      <td>44</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>...</td>
+      <td>1473</td>
+      <td>1473</td>
+      <td>1473</td>
+      <td>1473</td>
+      <td>1473</td>
+      <td>1473</td>
+      <td>1473</td>
+      <td>1473</td>
+      <td>34619</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>280000</td>
+      <td>male</td>
+      <td>graduate school</td>
+      <td>nan</td>
+      <td>46</td>
+      <td>1</td>
+      <td>-2</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>...</td>
+      <td>6880</td>
+      <td>797</td>
+      <td>4898</td>
+      <td>0</td>
+      <td>26330</td>
+      <td>6880</td>
+      <td>797</td>
+      <td>4898</td>
+      <td>3680</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>350000</td>
+      <td>female</td>
+      <td>university</td>
+      <td>married</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>40357</td>
+      <td>43663</td>
+      <td>52735</td>
+      <td>15000</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>4000</td>
+      <td>10000</td>
+      <td>25000</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>300000</td>
+      <td>female</td>
+      <td>graduate school</td>
+      <td>nan</td>
+      <td>38</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>...</td>
+      <td>2778</td>
+      <td>5367</td>
+      <td>2589</td>
+      <td>3558</td>
+      <td>2778</td>
+      <td>2778</td>
+      <td>5367</td>
+      <td>0</td>
+      <td>3661</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>310000</td>
+      <td>female</td>
+      <td>high school</td>
+      <td>single</td>
+      <td>27</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>89993</td>
+      <td>92229</td>
+      <td>94473</td>
+      <td>4000</td>
+      <td>6000</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>970</th>
+      <td>80000</td>
+      <td>male</td>
+      <td>university</td>
+      <td>nan</td>
+      <td>35</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>79296</td>
+      <td>75274</td>
+      <td>78051</td>
+      <td>4000</td>
+      <td>3500</td>
+      <td>3322</td>
+      <td>3000</td>
+      <td>5007</td>
+      <td>3000</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>971</th>
+      <td>260000</td>
+      <td>female</td>
+      <td>graduate school</td>
+      <td>married</td>
+      <td>37</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>...</td>
+      <td>1484</td>
+      <td>307</td>
+      <td>157</td>
+      <td>268</td>
+      <td>157</td>
+      <td>1484</td>
+      <td>307</td>
+      <td>157</td>
+      <td>438</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>972</th>
+      <td>120000</td>
+      <td>female</td>
+      <td>high school</td>
+      <td>married</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>86416</td>
+      <td>53501</td>
+      <td>51931</td>
+      <td>3440</td>
+      <td>5017</td>
+      <td>5000</td>
+      <td>2000</td>
+      <td>1500</td>
+      <td>42800</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>973</th>
+      <td>50000</td>
+      <td>nan</td>
+      <td>university</td>
+      <td>single</td>
+      <td>57</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>...</td>
+      <td>52079</td>
+      <td>49523</td>
+      <td>49128</td>
+      <td>2200</td>
+      <td>2500</td>
+      <td>4000</td>
+      <td>0</td>
+      <td>2000</td>
+      <td>2000</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>974</th>
+      <td>280000</td>
+      <td>male</td>
+      <td>university</td>
+      <td>single</td>
+      <td>47</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>63106</td>
+      <td>63465</td>
+      <td>64031</td>
+      <td>4004</td>
+      <td>3504</td>
+      <td>3204</td>
+      <td>2304</td>
+      <td>2504</td>
+      <td>2304</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>975</th>
+      <td>200000</td>
+      <td>female</td>
+      <td>university</td>
+      <td>married</td>
+      <td>39</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>131741</td>
+      <td>134488</td>
+      <td>137240</td>
+      <td>9201</td>
+      <td>5000</td>
+      <td>4500</td>
+      <td>4600</td>
+      <td>4700</td>
+      <td>5319</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>976</th>
+      <td>120000</td>
+      <td>male</td>
+      <td>university</td>
+      <td>married</td>
+      <td>38</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>30564</td>
+      <td>22702</td>
+      <td>23175</td>
+      <td>2000</td>
+      <td>1361</td>
+      <td>1000</td>
+      <td>824</td>
+      <td>851</td>
+      <td>812</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>977</th>
+      <td>70000</td>
+      <td>male</td>
+      <td>graduate school</td>
+      <td>single</td>
+      <td>28</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>33079</td>
+      <td>23188</td>
+      <td>20937</td>
+      <td>8000</td>
+      <td>2000</td>
+      <td>30000</td>
+      <td>5000</td>
+      <td>20000</td>
+      <td>25000</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>978</th>
+      <td>20000</td>
+      <td>female</td>
+      <td>university</td>
+      <td>single</td>
+      <td>31</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>24669</td>
+      <td>20899</td>
+      <td>11968</td>
+      <td>11000</td>
+      <td>5000</td>
+      <td>0</td>
+      <td>418</td>
+      <td>5000</td>
+      <td>3816</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>979</th>
+      <td>240000</td>
+      <td>male</td>
+      <td>graduate school</td>
+      <td>married</td>
+      <td>37</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>217991</td>
+      <td>221981</td>
+      <td>214320</td>
+      <td>8494</td>
+      <td>7762</td>
+      <td>7176</td>
+      <td>7505</td>
+      <td>7273</td>
+      <td>7509</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>980</th>
+      <td>20000</td>
+      <td>female</td>
+      <td>university</td>
+      <td>single</td>
+      <td>22</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>2</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>780</td>
+      <td>390</td>
+      <td>0</td>
+      <td>6594</td>
+      <td>0</td>
+      <td>780</td>
+      <td>0</td>
+      <td>0</td>
+      <td>11000</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>981</th>
+      <td>20000</td>
+      <td>male</td>
+      <td>high school</td>
+      <td>single</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>19035</td>
+      <td>19262</td>
+      <td>12308</td>
+      <td>1287</td>
+      <td>1462</td>
+      <td>1522</td>
+      <td>1165</td>
+      <td>0</td>
+      <td>1000</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>982</th>
+      <td>50000</td>
+      <td>male</td>
+      <td>university</td>
+      <td>single</td>
+      <td>33</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>49736</td>
+      <td>17599</td>
+      <td>16753</td>
+      <td>1780</td>
+      <td>2140</td>
+      <td>1161</td>
+      <td>510</td>
+      <td>503</td>
+      <td>500</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>983</th>
+      <td>200000</td>
+      <td>male</td>
+      <td>university</td>
+      <td>single</td>
+      <td>31</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>27497</td>
+      <td>29082</td>
+      <td>31647</td>
+      <td>3000</td>
+      <td>2000</td>
+      <td>2000</td>
+      <td>2000</td>
+      <td>3000</td>
+      <td>4000</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>984</th>
+      <td>140000</td>
+      <td>female</td>
+      <td>graduate school</td>
+      <td>married</td>
+      <td>35</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>24958</td>
+      <td>27574</td>
+      <td>27151</td>
+      <td>3000</td>
+      <td>2000</td>
+      <td>2000</td>
+      <td>3000</td>
+      <td>1661</td>
+      <td>3500</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>985</th>
+      <td>80000</td>
+      <td>male</td>
+      <td>graduate school</td>
+      <td>married</td>
+      <td>45</td>
+      <td>1</td>
+      <td>-2</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>...</td>
+      <td>-220</td>
+      <td>390</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1000</td>
+      <td>0</td>
+      <td>1000</td>
+      <td>0</td>
+      <td>780</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>986</th>
+      <td>200000</td>
+      <td>male</td>
+      <td>high school</td>
+      <td>nan</td>
+      <td>33</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>119730</td>
+      <td>122537</td>
+      <td>109504</td>
+      <td>7100</td>
+      <td>5354</td>
+      <td>4363</td>
+      <td>4816</td>
+      <td>4381</td>
+      <td>3330</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>987</th>
+      <td>250000</td>
+      <td>female</td>
+      <td>graduate school</td>
+      <td>married</td>
+      <td>42</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>2</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>...</td>
+      <td>686</td>
+      <td>1522</td>
+      <td>686</td>
+      <td>2186</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1522</td>
+      <td>0</td>
+      <td>4389</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>988</th>
+      <td>80000</td>
+      <td>male</td>
+      <td>high school</td>
+      <td>single</td>
+      <td>44</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>...</td>
+      <td>62696</td>
+      <td>64148</td>
+      <td>62965</td>
+      <td>2800</td>
+      <td>2200</td>
+      <td>4700</td>
+      <td>2600</td>
+      <td>0</td>
+      <td>4400</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>989</th>
+      <td>230000</td>
+      <td>female</td>
+      <td>university</td>
+      <td>married</td>
+      <td>43</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>8729</td>
+      <td>10816</td>
+      <td>15893</td>
+      <td>1295</td>
+      <td>1300</td>
+      <td>468</td>
+      <td>2816</td>
+      <td>5893</td>
+      <td>5977</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>990</th>
+      <td>500000</td>
+      <td>male</td>
+      <td>graduate school</td>
+      <td>single</td>
+      <td>35</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>...</td>
+      <td>6461</td>
+      <td>2567</td>
+      <td>735</td>
+      <td>2336</td>
+      <td>1215</td>
+      <td>6461</td>
+      <td>2567</td>
+      <td>1470</td>
+      <td>11605</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>991</th>
+      <td>50000</td>
+      <td>female</td>
+      <td>graduate school</td>
+      <td>single</td>
+      <td>34</td>
+      <td>1</td>
+      <td>-2</td>
+      <td>-2</td>
+      <td>-2</td>
+      <td>-2</td>
+      <td>...</td>
+      <td>0</td>
+      <td>300</td>
+      <td>150</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>300</td>
+      <td>0</td>
+      <td>980</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>992</th>
+      <td>200000</td>
+      <td>female</td>
+      <td>graduate school</td>
+      <td>single</td>
+      <td>32</td>
+      <td>-2</td>
+      <td>-2</td>
+      <td>-2</td>
+      <td>-2</td>
+      <td>-2</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2820</td>
+      <td>0</td>
+      <td>2090</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2820</td>
+      <td>10540</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>993</th>
+      <td>70000</td>
+      <td>male</td>
+      <td>graduate school</td>
+      <td>single</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>56766</td>
+      <td>50395</td>
+      <td>42214</td>
+      <td>5000</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>7000</td>
+      <td>7000</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>994</th>
+      <td>120000</td>
+      <td>female</td>
+      <td>graduate school</td>
+      <td>married</td>
+      <td>31</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>2280</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4269</td>
+      <td>0</td>
+      <td>200</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>995</th>
+      <td>50000</td>
+      <td>female</td>
+      <td>graduate school</td>
+      <td>single</td>
+      <td>25</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>...</td>
+      <td>8239</td>
+      <td>6376</td>
+      <td>10077</td>
+      <td>4029</td>
+      <td>4031</td>
+      <td>3000</td>
+      <td>6376</td>
+      <td>5000</td>
+      <td>0</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>996</th>
+      <td>200000</td>
+      <td>female</td>
+      <td>graduate school</td>
+      <td>married</td>
+      <td>36</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>7782</td>
+      <td>6987</td>
+      <td>7662</td>
+      <td>5788</td>
+      <td>8587</td>
+      <td>5314</td>
+      <td>5000</td>
+      <td>5000</td>
+      <td>6000</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>997</th>
+      <td>90000</td>
+      <td>female</td>
+      <td>high school</td>
+      <td>married</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>50095</td>
+      <td>48987</td>
+      <td>49519</td>
+      <td>4000</td>
+      <td>2602</td>
+      <td>2000</td>
+      <td>3000</td>
+      <td>2000</td>
+      <td>5000</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>998</th>
+      <td>500000</td>
+      <td>male</td>
+      <td>high school</td>
+      <td>married</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>...</td>
+      <td>21734</td>
+      <td>1837</td>
+      <td>96</td>
+      <td>1832</td>
+      <td>1920</td>
+      <td>21734</td>
+      <td>1837</td>
+      <td>0</td>
+      <td>19637</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>999</th>
+      <td>40000</td>
+      <td>male</td>
+      <td>university</td>
+      <td>single</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>32146</td>
+      <td>33128</td>
+      <td>33923</td>
+      <td>5700</td>
+      <td>1000</td>
+      <td>1200</td>
+      <td>1500</td>
+      <td>1500</td>
+      <td>1900</td>
+      <td>yes</td>
+    </tr>
+  </tbody>
+</table>
+<p>1000 rows × 24 columns</p>
+</div>
+
+
+
+
+```python
 cc_clean = cc
 
-if ba_var[0] in cc_clean.columns:
-    cc_clean = cc_clean.assign(ba_mean=cc_clean[ba_var].mean(axis=1))
-    cc_clean = cc_clean.drop(columns=ba_var)
+# Drop bill amount 
+cc_clean = cc_clean.assign(ba_mean=cc_clean[ba_var].mean(axis=1))
+cc_clean = cc_clean.drop(columns=ba_var)
+
+# Fix sex
+
+# Fix education
+
+# Fix status
+
+# Fix age with average
+mean_age = round(cc_clean[cc_clean['age']>0]['age'].mean())
+cc_clean['age'] = cc_clean['age'].apply(lambda x: x if x > 0 else mean_age)
 
 cc_clean.head()
 ```
@@ -3237,8 +5085,8 @@ cc_clean.head()
       <td>50000</td>
       <td>male</td>
       <td>graduate school</td>
-      <td>NaN</td>
-      <td>25</td>
+      <td>nan</td>
+      <td>25.0</td>
       <td>2</td>
       <td>0</td>
       <td>0</td>
@@ -3260,7 +5108,7 @@ cc_clean.head()
       <td>male</td>
       <td>university</td>
       <td>married</td>
-      <td>54</td>
+      <td>54.0</td>
       <td>-1</td>
       <td>-1</td>
       <td>-1</td>
@@ -3282,7 +5130,7 @@ cc_clean.head()
       <td>female</td>
       <td>high school</td>
       <td>married</td>
-      <td>-1</td>
+      <td>35.0</td>
       <td>2</td>
       <td>3</td>
       <td>2</td>
@@ -3304,7 +5152,7 @@ cc_clean.head()
       <td>female</td>
       <td>university</td>
       <td>single</td>
-      <td>-1</td>
+      <td>35.0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -3326,7 +5174,7 @@ cc_clean.head()
       <td>female</td>
       <td>high school</td>
       <td>married</td>
-      <td>36</td>
+      <td>36.0</td>
       <td>1</td>
       <td>2</td>
       <td>2</td>
@@ -3347,3 +5195,58 @@ cc_clean.head()
 </div>
 
 
+
+Clustering
+==========
+
+
+```python
+from sklearn.preprocessing import LabelEncoder
+```
+
+
+```python
+label_encoders = dict()
+column2encode = ['Sex']
+
+for col in column2encode:
+    le = LabelEncoder()
+    df[col] = le.fit_transform(df[col])
+    label_encoders[col] = len
+    
+cc_clean
+```
+
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-84-f51276f9b8fe> in <module>
+          4 for col in column2encode:
+          5     le = LabelEncoder()
+    ----> 6     df[col] = le.fit_transform(df[col])
+          7     label_encoders[col] = len
+          8 
+
+
+    NameError: name 'df' is not defined
+
+
+
+```python
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+```
+
+
+```python
+sse_list = list()
+max_k = 50
+for k in range(2, max_k + 1):
+    kmeans = KMeans(n_clusters=k, n_init=10, max_iter=100)
+    kmeans.fit(X)
+    
+    sse = kmeans.inertia_
+    sse_list.append(sse)
+```

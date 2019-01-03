@@ -2,7 +2,48 @@
 
 \usepackage{multicol}
 \usepackage{graphicx}
-\usepackage[left=2cm, right=2cm, top=2cm, bottom=4cm]{geometry}
+\usepackage[left=2cm, right=2cm, top=1.5cm, bottom=2cm]{geometry}
+\usepackage{titlesec}
+\usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
+
+\makeatletter
+\renewcommand\chapter{\thispagestyle{plain}%
+\global\@topnum\z@
+\@afterindentfalse
+\secdef\@chapter\@schapter}
+\makeatother 
+
+\makeatletter
+\titleformat{\chapter} 
+{\normalfont\huge\bfseries}{\thechapter.}{.8em}{} 
+\titleformat{\subsection}
+{\normalfont\large\bfseries}{\thesubsection.}{0.5em}{}
+\titleformat{\subsubsection}
+{\normalfont\normalsize\bfseries}{\thesubsubsection.}{0.5em}{}
+\makeatother 
+
+
+\makeatletter
+% \patchcmd{<cmd>}{<search>}{<replace>}{<success>}{<failure>}
+% --- Patch \chapter
+\patchcmd{\@makechapterhead}{50\p@}{\chapheadtopskip}{}{}% Space from top of page to CHAPTER X
+\patchcmd{\@makechapterhead}{20\p@}{\chapheadsep}{}{}% Space between CHAPTER X and CHAPTER TITLE
+\patchcmd{\@makechapterhead}{40\p@}{\chapheadbelowskip}{}{}% Space between CHAPTER TITLE and text
+% --- Patch \chapter*
+\patchcmd{\@makeschapterhead}{50\p@}{\chapheadtopskip}{}{}% Space from top of page to CHAPTER TITLE
+\patchcmd{\@makeschapterhead}{40\p@}{\chapheadbelowskip}{}{}% SPace between CHAPTER TITLE and text
+\makeatother
+% Set new lengths
+\newlength{\chapheadtopskip}\setlength{\chapheadtopskip}{10pt}
+\newlength{\chapheadsep}\setlength{\chapheadsep}{10pt}
+\newlength{\chapheadbelowskip}\setlength{\chapheadbelowskip}{10pt}
+\makeatother 
+
+
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -40,8 +81,6 @@
 
 \tableofcontents
 
-%S\renewcommand{\cleardoublepage}{}
-%\renewcommand{\clearpage}{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Introduction}
@@ -49,11 +88,13 @@
 
 This research aimed at the case of customers default payments in Taiwan and compares the predictive accuracy of probability of default among six data mining methods. From the perspective of risk management the binary result of classification will valuable for identifying credible or not credible clients.
 
-
 TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \chapter{Data Understanding}
+
+% \section{Overview}
 
 The dataset is composed by 10000 records. Each record represents a customer, described by $24$ different attributes.
 
@@ -163,8 +204,6 @@ We have discretized the continuous attribute by the natural binning method. For 
 
 \end{figure}
 
-\clearpage
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \smallskip
 \begin{figure}[h]
@@ -205,7 +244,9 @@ We have discretized the continuous attribute by the natural binning method. For 
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \clearpage
+
 \section{Assessing data quality}
 
 Assessing data quality (missing values, outliers)
@@ -215,7 +256,6 @@ Assessing data quality (missing values, outliers)
 
 modifica variabili
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
 
 \section{Correlations and redundant variables}
 
@@ -224,25 +264,24 @@ modifica variabili
         Cose Cose cose Cose cose Cose cose
   \end{minipage}
   \begin{minipage}[h]{.60\textwidth}
-    \includegraphics[width=.95\textwidth]{notebook/CardCardDefault_80_1}
+    %\includegraphics[width=.95\textwidth]{notebook/CardCardDefault_80_1}
   \end{minipage}
 \end{figure}
 
 
 \begin{figure}[h]
   \begin{minipage}[h]{.60\textwidth}
-    \includegraphics[width=.95\textwidth]{notebook/CardCardDefault_82_1}
+    %\includegraphics[width=.95\textwidth]{notebook/CardCardDefault_82_1}
   \end{minipage}
   \begin{minipage}[h]{.40\textwidth}
         Cose Cose cose Cose cose Cose cose
   \end{minipage}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
 \chapter{Clustering}
 
 \section{K-means}
-
-
 \subsection{Choice of attributes and distance function}
 \subsection{Choise of the best value of k}
 \subsection{Cluster analysis}
@@ -259,6 +298,7 @@ modifica variabili
 \section{Evaluation of clustering approaches and comparison of the clustering obtained}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
 \chapter{Association Rules Mining}
 
 \section{Frequent patterns extraction with different parameters}
@@ -269,6 +309,7 @@ modifica variabili
 \section{Use the most meaningful rules to predict credit card defaults}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
 \chapter{Classification}
 
 \section{Choice of attributes for the decision trees}
