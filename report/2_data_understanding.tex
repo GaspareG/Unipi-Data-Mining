@@ -119,10 +119,10 @@ For these attributes the mode of the bin has also been reported as it is more re
 
 \smallskip
 \begin{figure}[h]
-  \begin{minipage}[h]{.50\textwidth}
+  \begin{minipage}[h]{.45\textwidth}
     \includegraphics[width=.95\textwidth]{img/ch2/payment_status_1}
   \end{minipage}
-  \begin{minipage}[h]{.50\textwidth}
+  \begin{minipage}[h]{.55\textwidth}
         {\Large \textbf{Payment status}}
         
         History of past payments.
@@ -144,25 +144,26 @@ For these attributes the mode of the bin has also been reported as it is more re
          
          The distribution of the payment status over the six months are all very similar to each other so we only illustate the first one for simplicity.
          The most frequent bin is always the $0$ and around $90\%$ of the customers always lies between $-2$ and $0$. 
-
+        
   \end{minipage}
 \end{figure}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \smallskip
 \begin{figure}[h]
-  \begin{minipage}[h]{.50\textwidth}
+  \begin{minipage}[h]{.55\textwidth}
         {\Large \textbf{Bill Amount}}
         
         Amount of bill statement (expressed in NT dollar).
         
         Six continuous attributes, again one for each month between April and September.
-        The values are in range
+        
+        The bill amount is the sum of all the purchases, payments and other debits and credits made to your credit card account within the billing cycle. The values are in range $[-209051, 616836]$.
+        As in the payment status, the distribution of the bill amount are nearly the same over the six month. The most frequent by is always the 0 (from $0$ NTD to $49999$ NTD).
+        The mean increases according to the month, it start from $38621$ of April up to $51490$ of September. On ther other hand the credit default rate is always around the $20\%$ for all the bins (except some border case for small bin).
         
   \end{minipage}
-  \begin{minipage}[h]{.50\textwidth}
+  \begin{minipage}[h]{.45\textwidth}
     \includegraphics[width=.95\textwidth]{img/ch2/bill_amount_1}
   \end{minipage}
 \end{figure}
@@ -170,11 +171,16 @@ For these attributes the mode of the bin has also been reported as it is more re
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \smallskip
 \begin{figure}[h]
-  \begin{minipage}[h]{.50\textwidth}
+  \begin{minipage}[h]{.45\textwidth}
     \includegraphics[width=.95\textwidth]{img/ch2/payment_amount_1}
   \end{minipage}
-  \begin{minipage}[h]{.50\textwidth}
+  \begin{minipage}[h]{.55\textwidth}
         {\Large \textbf{Payment amount}}
+        
+        Amount of payment (expressed in NT dollar).
+        
+        Six continuous attribute, one for each month between April and September.
+        It represent the sum of all the payments made by the customer with the credit card in the last month. The distribution of the payment status over the six months are again all very similar to each other. The most frequent bin is always the 0 (from $0$ NTD to $4999$ NTD), which always include around the $75\%$ of the customers. The mean is around $4719$ and $5973$ without any particular distribution other the months.
   \end{minipage}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -183,7 +189,11 @@ For these attributes the mode of the bin has also been reported as it is more re
   \begin{minipage}[h]{.60\textwidth}
         {\Large \textbf{Credit default}}
         
-        prova
+        Credit card default.
+        
+        A boolean attribute that represents the credibility of the customer.
+        The credit card default is a status that is applied to the customer when a list of terms are missed (like make the minimum required payment), and it affects for example your possibility to demand for a loan or to get another credit card. In the dataset we have $2212$ customer in credit card default and $7788$ not. 
+        
   \end{minipage}
   \begin{minipage}[h]{.40\textwidth}
     \includegraphics[width=.95\textwidth]{img/ch2/credit_default}
@@ -196,47 +206,49 @@ For these attributes the mode of the bin has also been reported as it is more re
 \section{Assessing data quality}
 
 \begin{figure}[h]
-  \begin{minipage}[h]{.60\textwidth}
+  \begin{minipage}[h]{0.95\textwidth}
 
-    In this part we have checked for duplicates and outliers, in order to reduce the quantity of data and to avoid that their presence could negatively affect
-  \end{minipage}
-  \begin{minipage}[h]{.40\textwidth}
-    \includegraphics[width=.95\textwidth]{img/ch2/outlier}
+\begin{wrapfigure}{R}{0.40\textwidth}
+\centering
+\includegraphics[width=0.40\textwidth]{img/ch2/outlier}
+\end{wrapfigure}
+
+    In this part we have checked for duplicates, missing values and outliers, in order to reduce the quantity of data and to avoid that their presence could negatively affect the analysis.
+
+    Regarding the duplicates, in the dataset there are only two identical records so we decide to not remove the single duplicate as it is not a big problem.
+    Regarding the missing values we have $100$ records with missing sex, $127$ records, $1822$ records with missing status and $951$ records with missing age. We decided to not remove them as they are a big part of the dataset, instead we replace the missing ages with the average age (which is $35.49$). We set the missing statuses to \textit{others} as we think that it can include some particular cases (like engaged or cohabitant). We again set the missing educations to \textit{others} and the missing sex to female as they are the more frequents in the dataset. 
+    For the outliers we first normalize all the continuous attributes using the z-score algorithm (in this way we can visualize all the attributes in the same scale). Then we plot them in a boxplot and we can see that in the dataset only $3$ values are under the lower adjacent value, instead over the upper adjacent value we have $50$ limits, $211$ limits and an average of $895$ for the six bill amounts. We decided to not consider them as outliers, 
   \end{minipage}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Variables transformations}
 
-modifica variabili
-
-modifica variabili
-
-modifica variabili
-
+We decide to transform the \textit{credit\_default} attribute from yes\/no to 1\/2 in order to better visualize them in the following plots. For the same reason and to limit the dispersion we decided to divide in bin the continuous attributes. %(in particular we divide ages in bin of $5$ years, payment amounts in bin of $1000$ NTD, limits and bill amounts in bin of $10000$ NTD.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Correlations and redundant variables}
 
 \begin{figure}[h]
-  \begin{minipage}[h]{.60\textwidth}
-  Analyzing the correlation matrix of all the continuous attribute we can clearly see that all the attributes related to the bill amount are strongly correlated.
-  All the 
+  \begin{minipage}[h]{.95\textwidth}
   
-  \end{minipage}
-  \begin{minipage}[h]{.40\textwidth}
-    \includegraphics[width=.95\textwidth]{notebook/CardCardDefault_84_1}
-  \end{minipage}
-\end{figure}
+    \begin{floatingfigure}[r]{0.55\textwidth}
+        \mbox{\includegraphics[width=0.55\textwidth]{img/ch2/correlation_matrix_ba}}
+        \caption{correlation matrix with \textit{ba\_mean}}
+    \end{floatingfigure}
+
+  Analyzing the correlation matrix of all the continuous attribute we can clearly see that all the attributes related to the bill amounts are strongly correlated.
+
+  All the pairs of bill amounts have a correlation between $0.8$ and $0.95$ so we decide to analize further this $6$ attributes.
+    
+  
+  We added a new attribute to the dataset called \textit{ba\_mean} calculated as the mean of all the bill amount for each customer.
+  
+    
+  We again plot the correlation matrix (rescricted only to the bill amounts attributes) and we can see that the mean has a correlation between $0.93$ and $0.97$. For this reasons we drop all the six bill amounts attributes and introduce \textit{ba\_mean} as new attribute. 
 
 
-\begin{figure}[h]
-  \begin{minipage}[h]{.40\textwidth}
-    \includegraphics[width=.95\textwidth]{notebook/CardCardDefault_86_1}
-  \end{minipage}
-  \begin{minipage}[h]{.60\textwidth}
-  We add a new attribute to the dataset called \textit{ba\_mean} which is the mean of all the bill amount for each customer.
-  We plot now a new correlation matrix rescricted only to the attributed of.
+    
   \end{minipage}
 \end{figure}
