@@ -657,11 +657,6 @@ sex_default
       <td>2904</td>
       <td>964</td>
     </tr>
-    <tr>
-      <th>nan</th>
-      <td>81</td>
-      <td>19</td>
-    </tr>
   </tbody>
 </table>
 </div>
@@ -727,11 +722,6 @@ sex_default_norm
       <th>male</th>
       <td>0.750776</td>
       <td>0.249224</td>
-    </tr>
-    <tr>
-      <th>nan</th>
-      <td>0.810000</td>
-      <td>0.190000</td>
     </tr>
   </tbody>
 </table>
@@ -852,11 +842,6 @@ education_default
       <td>386</td>
     </tr>
     <tr>
-      <th>nan</th>
-      <td>121</td>
-      <td>6</td>
-    </tr>
-    <tr>
       <th>others</th>
       <td>34</td>
       <td>2</td>
@@ -931,11 +916,6 @@ education_default_norm
       <th>high school</th>
       <td>0.769139</td>
       <td>0.230861</td>
-    </tr>
-    <tr>
-      <th>nan</th>
-      <td>0.952756</td>
-      <td>0.047244</td>
     </tr>
     <tr>
       <th>others</th>
@@ -1060,11 +1040,6 @@ status_default
       <td>869</td>
     </tr>
     <tr>
-      <th>nan</th>
-      <td>1392</td>
-      <td>430</td>
-    </tr>
-    <tr>
       <th>others</th>
       <td>50</td>
       <td>25</td>
@@ -1134,11 +1109,6 @@ status_default_norm
       <th>married</th>
       <td>0.768698</td>
       <td>0.231302</td>
-    </tr>
-    <tr>
-      <th>nan</th>
-      <td>0.763996</td>
-      <td>0.236004</td>
     </tr>
     <tr>
       <th>others</th>
@@ -1324,7 +1294,7 @@ ages_valid.head()
       <td>50000</td>
       <td>male</td>
       <td>graduate school</td>
-      <td>nan</td>
+      <td>NaN</td>
       <td>25</td>
       <td>2</td>
       <td>0</td>
@@ -2293,7 +2263,7 @@ ps_default[0]
 fig = plt.figure(figsize=(15, 15)) 
 fig_dims = (3, 2)
 
-for i in range(0, len(ps_var)):
+for i in range(0, 2):#len(ps_var)):
     x = i // fig_dims[1]
     y = i % fig_dims[1]
     sp = plt.subplot2grid(fig_dims, (x, y))
@@ -2410,7 +2380,7 @@ ps_default_norm[1]
 fig = plt.figure(figsize=(15, 15)) 
 fig_dims = (3, 2)
 
-for i in range(0, len(ps_var)):
+for i in range(0, 2):#len(ps_var)):
     x = i // fig_dims[1]
     y = i % fig_dims[1]
     sp = plt.subplot2grid(fig_dims, (x, y))
@@ -2714,7 +2684,7 @@ ba_default[0]
 fig = plt.figure(figsize=(15, 15)) 
 fig_dims = (3, 2)
 
-for i in range(0, len(ba_var)):
+for i in range(0, 2):#len(ba_var)):
     x = i // fig_dims[1]
     y = i % fig_dims[1]
     sp = plt.subplot2grid(fig_dims, (x, y))
@@ -3032,7 +3002,7 @@ cc.isnull().sum()[pa_var]
 pa_default = []
 
 for m in pa_var:
-    pa_default.append(pd.crosstab(cc[m]//50000*50000, cc['credit_default']))
+    pa_default.append(pd.crosstab(cc[m]//5000*5000, cc['credit_default'])[0:10])
     
 pa_default[4]
 ```
@@ -3070,58 +3040,53 @@ pa_default[4]
   <tbody>
     <tr>
       <th>0</th>
-      <td>7633</td>
-      <td>2203</td>
+      <td>5506</td>
+      <td>1865</td>
     </tr>
     <tr>
-      <th>50000</th>
-      <td>83</td>
+      <th>5000</th>
+      <td>1232</td>
+      <td>225</td>
+    </tr>
+    <tr>
+      <th>10000</th>
+      <td>429</td>
+      <td>69</td>
+    </tr>
+    <tr>
+      <th>15000</th>
+      <td>182</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>20000</th>
+      <td>108</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>25000</th>
+      <td>52</td>
       <td>6</td>
     </tr>
     <tr>
-      <th>100000</th>
-      <td>40</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>150000</th>
-      <td>16</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>200000</th>
-      <td>6</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>250000</th>
-      <td>2</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>300000</th>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>350000</th>
+      <th>30000</th>
+      <td>45</td>
       <td>3</td>
-      <td>0</td>
     </tr>
     <tr>
-      <th>400000</th>
-      <td>1</td>
-      <td>0</td>
+      <th>35000</th>
+      <td>31</td>
+      <td>3</td>
     </tr>
     <tr>
-      <th>550000</th>
+      <th>40000</th>
+      <td>28</td>
       <td>1</td>
-      <td>0</td>
     </tr>
     <tr>
-      <th>1200000</th>
+      <th>45000</th>
+      <td>20</td>
       <td>1</td>
-      <td>0</td>
     </tr>
   </tbody>
 </table>
@@ -3135,7 +3100,7 @@ pa_default[4]
 fig = plt.figure(figsize=(15, 15)) 
 fig_dims = (3, 2)
 
-for i in range(0, len(pa_var)):
+for i in range(0, 2):#len(pa_var)):
     x = i // fig_dims[1]
     y = i % fig_dims[1]
     sp = plt.subplot2grid(fig_dims, (x, y))
@@ -3192,18 +3157,33 @@ pa_default_norm[1]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.776662</td>
-      <td>0.223338</td>
+      <td>0.774520</td>
+      <td>0.225480</td>
+    </tr>
+    <tr>
+      <th>25000</th>
+      <td>0.899408</td>
+      <td>0.100592</td>
     </tr>
     <tr>
       <th>50000</th>
-      <td>0.931034</td>
-      <td>0.068966</td>
+      <td>0.909091</td>
+      <td>0.090909</td>
+    </tr>
+    <tr>
+      <th>75000</th>
+      <td>0.968750</td>
+      <td>0.031250</td>
     </tr>
     <tr>
       <th>100000</th>
-      <td>0.857143</td>
-      <td>0.142857</td>
+      <td>0.884615</td>
+      <td>0.115385</td>
+    </tr>
+    <tr>
+      <th>125000</th>
+      <td>0.777778</td>
+      <td>0.222222</td>
     </tr>
     <tr>
       <th>150000</th>
@@ -3211,7 +3191,17 @@ pa_default_norm[1]
       <td>0.000000</td>
     </tr>
     <tr>
+      <th>175000</th>
+      <td>1.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
       <th>200000</th>
+      <td>1.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>225000</th>
       <td>1.000000</td>
       <td>0.000000</td>
     </tr>
@@ -3222,6 +3212,11 @@ pa_default_norm[1]
     </tr>
     <tr>
       <th>300000</th>
+      <td>1.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>325000</th>
       <td>1.000000</td>
       <td>0.000000</td>
     </tr>
@@ -3413,9 +3408,9 @@ cc['age'].describe()
 
 
     count    10000.000000
-    mean        32.115300
-    std         13.617524
-    min          0.000000
+    mean        32.020200
+    std         13.843119
+    min         -1.000000
     25%         26.000000
     50%         33.000000
     75%         40.000000
@@ -3458,39 +3453,39 @@ print('Age ' + str(cc[cc['age'] == -1]['age'].size))
 cc.isnull().sum()
 ```
 
-    Sex 0
-    Education 0
-    Status 0
-    Age 0
+    Sex 100
+    Education 127
+    Status 1822
+    Age 951
 
 
 
 
 
-    limit             0
-    sex               0
-    education         0
-    status            0
-    age               0
-    ps-sep            0
-    ps-aug            0
-    ps-jul            0
-    ps-jun            0
-    ps-may            0
-    ps-apr            0
-    ba-sep            0
-    ba-aug            0
-    ba-jul            0
-    ba-jun            0
-    ba-may            0
-    ba-apr            0
-    pa-sep            0
-    pa-aug            0
-    pa-jul            0
-    pa-jun            0
-    pa-may            0
-    pa-apr            0
-    credit_default    0
+    limit                0
+    sex                100
+    education          127
+    status            1822
+    age                  0
+    ps-sep               0
+    ps-aug               0
+    ps-jul               0
+    ps-jun               0
+    ps-may               0
+    ps-apr               0
+    ba-sep               0
+    ba-aug               0
+    ba-jul               0
+    ba-jun               0
+    ba-may               0
+    ba-apr               0
+    pa-sep               0
+    pa-aug               0
+    pa-jul               0
+    pa-jun               0
+    pa-may               0
+    pa-apr               0
+    credit_default       0
     dtype: int64
 
 
@@ -3550,7 +3545,7 @@ cc.head(n=1000)
       <td>50000</td>
       <td>male</td>
       <td>graduate school</td>
-      <td>nan</td>
+      <td>NaN</td>
       <td>25</td>
       <td>2</td>
       <td>0</td>
@@ -3599,7 +3594,7 @@ cc.head(n=1000)
       <td>female</td>
       <td>high school</td>
       <td>married</td>
-      <td>0</td>
+      <td>-1</td>
       <td>2</td>
       <td>3</td>
       <td>2</td>
@@ -3623,7 +3618,7 @@ cc.head(n=1000)
       <td>female</td>
       <td>university</td>
       <td>single</td>
-      <td>0</td>
+      <td>-1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -3791,7 +3786,7 @@ cc.head(n=1000)
       <td>female</td>
       <td>graduate school</td>
       <td>single</td>
-      <td>0</td>
+      <td>-1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -3862,7 +3857,7 @@ cc.head(n=1000)
       <td>150000</td>
       <td>female</td>
       <td>graduate school</td>
-      <td>nan</td>
+      <td>NaN</td>
       <td>30</td>
       <td>0</td>
       <td>0</td>
@@ -4007,7 +4002,7 @@ cc.head(n=1000)
       <td>male</td>
       <td>graduate school</td>
       <td>married</td>
-      <td>0</td>
+      <td>-1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -4054,7 +4049,7 @@ cc.head(n=1000)
       <td>500000</td>
       <td>female</td>
       <td>graduate school</td>
-      <td>nan</td>
+      <td>NaN</td>
       <td>37</td>
       <td>0</td>
       <td>0</td>
@@ -4150,7 +4145,7 @@ cc.head(n=1000)
       <td>90000</td>
       <td>female</td>
       <td>high school</td>
-      <td>nan</td>
+      <td>NaN</td>
       <td>44</td>
       <td>-1</td>
       <td>-1</td>
@@ -4174,7 +4169,7 @@ cc.head(n=1000)
       <td>280000</td>
       <td>male</td>
       <td>graduate school</td>
-      <td>nan</td>
+      <td>NaN</td>
       <td>46</td>
       <td>1</td>
       <td>-2</td>
@@ -4199,7 +4194,7 @@ cc.head(n=1000)
       <td>female</td>
       <td>university</td>
       <td>married</td>
-      <td>0</td>
+      <td>-1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -4222,7 +4217,7 @@ cc.head(n=1000)
       <td>300000</td>
       <td>female</td>
       <td>graduate school</td>
-      <td>nan</td>
+      <td>NaN</td>
       <td>38</td>
       <td>-1</td>
       <td>-1</td>
@@ -4294,7 +4289,7 @@ cc.head(n=1000)
       <td>80000</td>
       <td>male</td>
       <td>university</td>
-      <td>nan</td>
+      <td>NaN</td>
       <td>35</td>
       <td>0</td>
       <td>0</td>
@@ -4343,7 +4338,7 @@ cc.head(n=1000)
       <td>female</td>
       <td>high school</td>
       <td>married</td>
-      <td>0</td>
+      <td>-1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -4364,7 +4359,7 @@ cc.head(n=1000)
     <tr>
       <th>973</th>
       <td>50000</td>
-      <td>nan</td>
+      <td>NaN</td>
       <td>university</td>
       <td>single</td>
       <td>57</td>
@@ -4559,7 +4554,7 @@ cc.head(n=1000)
       <td>male</td>
       <td>high school</td>
       <td>single</td>
-      <td>0</td>
+      <td>-1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -4678,7 +4673,7 @@ cc.head(n=1000)
       <td>200000</td>
       <td>male</td>
       <td>high school</td>
-      <td>nan</td>
+      <td>NaN</td>
       <td>33</td>
       <td>0</td>
       <td>0</td>
@@ -4943,7 +4938,7 @@ cc.head(n=1000)
       <td>female</td>
       <td>high school</td>
       <td>married</td>
-      <td>0</td>
+      <td>-1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -4967,7 +4962,7 @@ cc.head(n=1000)
       <td>male</td>
       <td>high school</td>
       <td>married</td>
-      <td>0</td>
+      <td>-1</td>
       <td>0</td>
       <td>-1</td>
       <td>-1</td>
@@ -4991,7 +4986,7 @@ cc.head(n=1000)
       <td>male</td>
       <td>university</td>
       <td>single</td>
-      <td>0</td>
+      <td>-1</td>
       <td>0</td>
       <td>0</td>
       <td>2</td>
@@ -5085,7 +5080,7 @@ cc_clean.head()
       <td>50000</td>
       <td>male</td>
       <td>graduate school</td>
-      <td>nan</td>
+      <td>NaN</td>
       <td>25.0</td>
       <td>2</td>
       <td>0</td>
@@ -5201,37 +5196,18 @@ Clustering
 
 
 ```python
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import MinMaxScaler
 ```
 
 
 ```python
-label_encoders = dict()
-column2encode = ['Sex']
-
-for col in column2encode:
-    le = LabelEncoder()
-    df[col] = le.fit_transform(df[col])
-    label_encoders[col] = len
-    
-cc_clean
+cc_clean_cont = cc_clean[['age', 'limit', 'ba_mean'] + pa_var]
+scaler = MinMaxScaler()
+X = scaler.fit_transform(cc_clean_cont.values)
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    <ipython-input-84-f51276f9b8fe> in <module>
-          4 for col in column2encode:
-          5     le = LabelEncoder()
-    ----> 6     df[col] = le.fit_transform(df[col])
-          7     label_encoders[col] = len
-          8 
-
-
-    NameError: name 'df' is not defined
-
+K-Means
+-----------
 
 
 ```python
@@ -5242,11 +5218,83 @@ from sklearn.metrics import silhouette_score
 
 ```python
 sse_list = list()
+silhouette_list = list()
+
 max_k = 50
 for k in range(2, max_k + 1):
-    kmeans = KMeans(n_clusters=k, n_init=10, max_iter=100)
+    kmeans = KMeans(n_clusters=k, n_init=10, max_iter=50)
     kmeans.fit(X)
     
     sse = kmeans.inertia_
     sse_list.append(sse)
+    silhouette = silhouette_score(X, kmeans.labels_)
+    silhouette_list.append(silhouette)
 ```
+
+
+```python
+plt.plot(range(2, len(sse_list) + 2), sse_list)
+plt.ylabel('SSE')
+plt.xlabel('K')
+plt.xticks(np.arange(0, 50, 5))
+plt.tick_params(axis='both', which='major')
+plt.show()
+```
+
+
+![png](CardCardDefault_files/CardCardDefault_101_0.png)
+
+
+
+```python
+plt.plot(range(2, len(silhouette_list) + 2), silhouette_list)
+plt.ylabel('Silhouette')
+plt.xlabel('K')
+plt.xticks(np.arange(0, 50, 5))
+plt.tick_params(axis='both', which='major')
+plt.show()
+```
+
+
+![png](CardCardDefault_files/CardCardDefault_102_0.png)
+
+
+
+```python
+kmeans = KMeans(n_clusters=10, n_init=20, max_iter=100)
+kmeans.fit(X)
+```
+
+
+
+
+    KMeans(algorithm='auto', copy_x=True, init='k-means++', max_iter=100,
+        n_clusters=10, n_init=20, n_jobs=None, precompute_distances='auto',
+        random_state=None, tol=0.0001, verbose=0)
+
+
+
+
+```python
+print('Silhouette %s' % silhouette_score(X, kmeans.labels_))
+```
+
+    Silhouette 0.30880012256353623
+
+
+
+```python
+centers = kmeans.cluster_centers_
+
+plt.figure(figsize=(8, 4))
+for i in range(0, len(centers)):
+    plt.plot(centers[i], marker='o', label='Cluster %s' % i)
+plt.tick_params(axis='both', which='major')
+plt.xticks(range(0, len(cc_clean_cont.columns)), cc_clean_cont.columns)
+plt.legend(ncol=2, bbox_to_anchor=(1.1, 1.05))
+plt.show()
+```
+
+
+![png](CardCardDefault_files/CardCardDefault_105_0.png)
+

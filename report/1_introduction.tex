@@ -1,0 +1,18 @@
+\chapter{Introduction}
+
+%This research aimed at the case of customers default payments in Taiwan and compares the predictive accuracy of probability of default among six data mining methods. From the perspective of risk management the binary result of classification will valuable for identifying credible or not credible clients.
+
+This report is aimed to illustrate the phases and the results of the analysis that we have conduced regarding the customers default payments in Taiwan. 
+In particular our target is to better understand under which conditions we should consider a client credibile or not.
+\smallskip
+
+Each customer is modelled by a record in the dataset, which is composed by $24$ attributes that describes its personal information and its banking data (like the credit limit, payment amount and others).
+
+The analysis is composed in 4 phases:
+
+\begin{itemize}
+  \item Semantical analysis and data manipulations of each customer (data cleaning, variables transformation, redundant variables, ...)
+  \item Use of 3 clustering algorithms (K-Means, DBSCAN, Hierarchical clustering) to group customers according to similarity properties in order to formulate hypotheses about customers credibility.
+  \item Verification of the hypotheses given in the previous phase and determination of association rules, in order to find co-occurrences between attributes.
+  \item Classification of the customers between who fail to make a payment by time and regular customers.
+\end{itemize}
