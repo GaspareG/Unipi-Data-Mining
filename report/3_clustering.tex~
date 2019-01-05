@@ -1,0 +1,20 @@
+ \chapter{Clustering}
+
+\section{K-means}
+
+prova
+
+\subsection{Choice of attributes and distance function}
+\subsection{Choise of the best value of k}
+\subsection{Cluster analysis}
+
+\section{DBSCAN}
+\subsection{Choice of attributes and distance function}
+\subsection{Study of the clustering parameters}
+\subsection{Characterization and interpretation of the obtained clusters}
+
+\section{Hierarchical clustering}
+\subsection{Choice of attributes and distance function}
+\subsection{Discussion of dendograms using different algorithms}
+
+\section{Evaluation of clustering approaches and comparison of the clustering obtained}
