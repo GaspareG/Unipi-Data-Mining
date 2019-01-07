@@ -226,6 +226,7 @@ For these attributes the mode of the bin has also been reported as it is more re
 
 We decide to transform the \textit{credit\_default} attribute from yes\/no to 1\/2 in order to better visualize them in the following plots. For the same reason and to limit the dispersion we decided to divide in bin the continuous attributes. In particular we divide ages in bin of $5$ years, payment amounts in bin of $1000$ NTD, limits and bill amounts in bin of $10000$ NTD.
 
+As last transformation we have normalized all the continuous attribute using the min-max scaling.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Correlations and redundant variables}
