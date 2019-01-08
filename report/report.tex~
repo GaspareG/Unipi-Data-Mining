@@ -6,9 +6,10 @@
 \usepackage{titlesec}
 \usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
 \usepackage{indentfirst}
-\usepackage[colorlinks]{hyperref}
+\usepackage{hyperref}
 \usepackage{wrapfig}
 \usepackage{floatflt,epsfig}
+\usepackage{xcolor}
 
 \setlength{\parindent}{0em}
 \setlength{\parskip}{0em}
