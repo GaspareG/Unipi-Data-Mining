@@ -4,29 +4,29 @@
 \section{K-means}
 \subsection{Choice of attributes and distance function}
 
-We have selected $3$ attributes to performe the clustering via the K-Means algorithm.
+We have selected \textbf{3} attributes to performe the clustering via the K-Means algorithm.
 In particular we have ignored the categorical attributes as there isn't a proper metric to define a distance function over these kinds of attributes.
 
-The used attributes are only: \textit{limit}, \textit{ba\_mean}, \textit{pa\_mean}. Note that we have excluded the age in this list as it is the only one that isn't measured in NTD.
+The used attributes are only: \textbf{limit}, \textbf{ba\_mean}, \textbf{pa\_mean}. Note that we have excluded the age from this list as it is the only one that isn't measured in NTD.
 
-For these attributes we used the euclidean distance as metric function as it is more natural for this kind of attributes.
+For these attributes we used the \textbf{euclidean distance} as metric function as it is more natural for this kind of attributes.
 
 \subsection{Choise of the best value of k}
 
-To choose the best value of $k$ we have plotted for each $K$ between $2$ and $50$ the values of the SSE and the silhouette score. Each value is calculated as the best among $10$ runs (with the lowest SSE) and with a maximum of $300$ iterations of the K-Means algorithm.
+To choose the best value of \textbf{k} we have plotted for each number of clusters between \textbf{2} and \textbf{50} the values of the SSE and the silhouette score. Each value is calculated as the best among \textbf{10} runs (with the lowest SSE) and with a maximum of \textbf{300} iterations of the K-Means algorithm.
 
 \begin{figure}[h]
   \begin{minipage}[h]{.50\textwidth}
     \includegraphics[width=1\textwidth]{img/ch3/kmeans_sse}
-     \caption{SSE value for each $K$.}
+     \caption{\textbf{SSE} value for each \textbf{K}.}
   \end{minipage}
     \begin{minipage}[h]{.50\textwidth}
     \includegraphics[width=1\textwidth]{img/ch3/kmeans_silhouette}
-     \caption{silhouette score for each $K$.}
+     \caption{\textbf{silhouette} score for each \textbf{K}.}
   \end{minipage}
 \end{figure}
 
-Using the elbow method we decide to set $k=6$ as it represents a good trade-off between SSE and data interpretability.
+Using the elbow method we decide to set k=\textbf{6} as it represents a good trade-off between SSE and data interpretability.
 
 \subsection{Cluster analysis}
 
@@ -54,7 +54,7 @@ Using the elbow method we decide to set $k=6$ as it represents a good trade-off 
   \end{minipage}
   \begin{minipage}[h]{.50\textwidth}
     
-    We have also plotted the number of credit defaults for each cluster to trying to understand the distribution of the customers. The cluster with the most credit default is the first one, with a ratio of $30\%$ and the cluster with the lowest credit default is the fifth, with a ratio of $6\%$.
+    We have also plotted the number of credit defaults for each cluster to trying to understand the distribution of the customers. The cluster with the most credit default is the first one, with a ratio of \textbf{30\%} and the cluster with the lowest credit default is the fifth, with a ratio of \textbf{6\%}.
 
   From the figures below we can see that the distributions of sex and status are the same for all the clusters, in particular their distributions are the same in the whole datasets so we can't use these attributes to make any assumptions over the obtained clusters.
       \end{minipage}
@@ -84,27 +84,27 @@ We can discuss each cluster individually to see the most interesting properties.
 
 \smallskip
 
-\textcolor{red}{Cluster 1} is the biggest cluster, with $4276$ total elements include nearly half of the customers, and it is also the cluster with the highest credit default ratio ($40\%$). From the parallel coordinates plot we can see that the customers in this class have the credit cards with the lowest limit and also have the lowest bill/payment amounts over the six months. The lowest limit could be that this cluster is the one with most of young people ($40\%$ are below the $30$), but also is the cluster with most customer with an education in university and in high school. The high positive credit default ratio could be a combination of the distribution of these attributes (younger and university/high school).
+\textbf{\textcolor{red}{Cluster 1}} is the biggest cluster, with \textbf{4276} total elements include nearly half of the customers, and it is also the cluster with the highest credit default ratio (\textbf{40\%}). From the parallel coordinates plot we can see that the customers in this class have the credit cards with the lowest limit and also have the lowest bill/payment amounts over the six months. The lowest limit could be that this cluster is the one with most of young people (\textbf{40\%} are below the \textbf{30}), but also is the cluster with most customer with an education in university and in high school. The high positive credit default ratio could be a combination of the distribution of these attributes (younger and university/high school).
 
 \smallskip
 
-\textcolor{green}{Cluster 2} with a total of $283$ customers is the smallest cluster. It has a credit default ratio of $21\%$ and it is the cluster with the older customers, nearly $40\%$ of the customers have an age higher that $40$. From the parallel coordinates we can see that is the only cluster with high limit and high bill amount and payment amount mean. 
+\textbf{\textcolor{green}{Cluster 2}} with a total of \textbf{283} customers is the smallest cluster. It has a credit default ratio of \textbf{21\%} and it is the cluster with the older customers, nearly \textbf{40\%} of the customers have an age higher that \textbf{40}. From the parallel coordinates we can see that is the only cluster with high limit and high bill amount and payment amount mean. 
 
 \medskip
 
-\textcolor{blue}{Cluster 3} has a total of $1143$ customers and a positive credit default ratio of $19\%$. In this cluster we have customers with a medium value of all the attributes.
+\textbf{\textcolor{blue}{Cluster 3}} has a total of \textbf{1143} customers and a positive credit default ratio of \textbf{19\%}. In this cluster we have customers with a medium value of all the attributes.
 
 \medskip
 
-\textcolor{yellow}{Cluster 4} with a total of $2083$ customers is the second cluster for size and is has a positive credit default ratio of $21\%$. In this cluster we have customers with a medium credit card limit and with the lowest bill/payment amount mean.
+\textbf{\textcolor{orange}{Cluster 4}} with a total of \textbf{2083} customers is the second cluster for size and is has a positive credit default ratio of \textbf{21\%}. In this cluster we have customers with a medium credit card limit and with the lowest bill/payment amount mean.
 
 \medskip
 
-\textcolor{brown}{Cluster 5} has a total of $457$ customers and is the cluster with the lowest positive credit default ratio (only $6\%$). In this cluster we have customers with a credit card of medium limit, with a low bill amount mean but with the highest payment amount mean. From a point of view of the education in this cluster (and in the last cluster) we have the lowest number of education in university but the highest number of education in graduate school.
+\textbf{\textcolor{brown}{Cluster 5}} has a total of \textbf{457} customers and is the cluster with the lowest positive credit default ratio (only \textbf{6\%}). In this cluster we have customers with a credit card of medium limit, with a low bill amount mean but with the highest payment amount mean. From a point of view of the education in this cluster (and in the last cluster) we have the lowest number of education in university but the highest number of education in graduate school.
 
 \medskip
 
-\textcolor{violet}{Cluster 6} has a total of $879$ customers. It is the cluster with the highest limit in the credit cards but it has a low bill/payment amount mean.
+\textbf{\textcolor{violet}{Cluster 6}} has a total of \textbf{879} customers. It is the cluster with the highest limit in the credit cards but it has a low bill/payment amount mean.
 
 \medskip
 
@@ -122,17 +122,25 @@ The most interesting cluster are \textcolor{red}{Cluster 1} and \textcolor{brown
 
 \medskip
 
-For the \textcolor{red}{Cluster 1} the customers in credit defaults have an higher credit card limit and payment amount mean but a lower average age (compared to the customers not in credit default from the same cluster).
+For the \textbf{\textcolor{red}{Cluster 1}} the customers in credit defaults have an higher credit card limit and payment amount mean but a lower average age (compared to the customers not in credit default from the same cluster).
 
 \medskip
 
-For the \textcolor{brown}{Cluster 5} the customers in credit defaults have a lower age and bill/payment amount mean (compared to the customers not in credit default from the same cluster).
+For the \textbf{\textcolor{brown}{Cluster 5}} the customers in credit defaults have a lower age and bill/payment amount mean (compared to the customers not in credit default from the same cluster).
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{DBSCAN}
 \subsection{Choice of attributes and distance function}
 
-For the clustering via the DBSCAN algorithm we have used the same attributes of the K-Means algorithm (\textit{limit}, \textit{ba\_mean} and \textit{pa\_mean} ). As metric we have used again the euclidean distance for the same reasons.
+For the clustering via the DBSCAN algorithm we have used the same attributes of the K-Means algorithm (\textbf{limit}, \textbf{ba\_mean} and \textbf{pa\_mean}). As metric we have used again the euclidean distance for the same reasons.
 
 \subsection{Study of the clustering parameters}
 
@@ -140,7 +148,7 @@ In order to execute the DBSCAN algorithm we need to choose the values of two par
 
 \medskip
 
-To choose the best value of \textit{epsilon} we have plotted, for each value of \textit{min-pts} in range $[2, 50]$ the sorted distances from the \textit{min-pts}-th point.
+To choose the best value of \textit{epsilon} we have plotted, for each value of \textit{min-pts} in range [\textbf{2}, \textbf{50}] the sorted distances from the \textit{min-pts}-th point.
 
 \begin{figure}[h]
   \begin{minipage}[h]{.50\textwidth}
@@ -151,18 +159,18 @@ To choose the best value of \textit{epsilon} we have plotted, for each value of 
   \end{minipage}
 \end{figure}
 
-From the plot on the left we can see that all the curves have an elbow at $x$ close to $8000$, for this value of $x$ the corresponding \textit{epsilon} is $0.05$.
+From the plot on the left we can see that all the curves have an elbow at $x$ close to \textbf{8000}, for this value of $x$ the corresponding \textit{epsilon} is \textbf{0.04}.
 
 \medskip
 
 \begin{figure}[h]
 
   \begin{minipage}[h]{.40\textwidth}
-To choose the best value of \textit{min-pts} now we can fix \textit{epsilon} to $0.05$ and plot, for every \textit{min-pts} in range $[2, 50]$, the silhouette coefficients.
+To choose the best value of \textit{min-pts} now we can fix \textit{epsilon} to \textbf{0.04} and plot, for every \textit{min-pts} in range [\textbf{2}, \textbf{50}], the silhouette coefficients.
 
   \smallskip
 
-  By analyzing the plot on the left and with some practical test over the dataset we decided to use \textit{min-pts=10}, in this way we obtained $10$ clusters.
+  By analyzing the plot on the left and with some practical test over the dataset we decided to use \textit{min-pts=14}, in this way we obtained $4$ clusters.
   \end{minipage}
   \begin{minipage}[h]{.60\textwidth}    
     \includegraphics[width=1\textwidth]{img/ch3/dbscan_silhouette}
@@ -173,10 +181,99 @@ To choose the best value of \textit{min-pts} now we can fix \textit{epsilon} to 
 \clearpage
 
 \subsection{Characterization and interpretation of the obtained clusters}
+
+\begin{center}  
+\begin{minipage}[h]{.60\textwidth}    
+  \includegraphics[width=1\textwidth]{img/ch3/dbscan_clustering}
+\end{minipage}
+\end{center}
+
+By using this configuration we obtain 4 clusters (plus the noise points, the black points) of size respectivelly \textbf{8379}, \textbf{27}, \textbf{19} and \textbf{6} and \textbf{690} noise points.
+
+\medskip
+
+This clustering is very unbalanced as almost all the points are in first cluster, we have tried with many different combinations of \textit{epsilon} and \textit{min-pts} but the results doesn't change.
+
+\medskip
+
+The bad clusterization of the DBSCAN is probabily due that the dataset is composed by a lot of nearly points (just remember from the section 2.2 that the attributes related to the bill/payment amount are nearly 10 times above the std).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hierarchical clustering}
 \subsection{Choice of attributes and distance function}
+
+For the clustering via the Hierarchical algorithm we have used the same attributes of the K-Means algorithm (\textbf{limit}, \textbf{ba\_mean} and \textbf{pa\_mean}). As metric we have used again the euclidean distance for the same reasons.
+
+\smallskip
+
+We have used the algorithm with different configurations, trying to vary both the connection criteria (single, complete, average, ward) and cutting heights to obtained a balanced number of clusters (we have tried to a number of clusters equals to \textbf{6} as in K-Means algorithm).
+
+For each configuration we have evaluated the silhouette coffiecient to trying to understand which one is best.
+
+\begin{table}[h]
+\centering
+\begin{adjustbox}{width=.5\textwidth}
+\small
+\begin{tabular}{lll}
+\textbf{method}  & \textbf{Clusters size}                    & \textbf{silhouette score} \\ \rowcolor[HTML]{EFEFEF} 
+ Complete        & \textbf{7416, 1369, 131, 120, 62, 23}     & \textbf{0.4039}           \\
+ Single          & \textbf{9116, 1, 1, 1, 1, 1}              & \textbf{0.6579}           \\ \rowcolor[HTML]{EFEFEF} 
+ Average         & \textbf{8816, 238, 58, 7, 1, 1}           & \textbf{0.4413}           \\
+ Ward            & \textbf{5142, 1928, 821, 428, 410, 392}   & \textbf{0.3183}                          
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+In single and average method we can clearly see that the first cluster contains almost all of the customers while the other clusters contains only a little percentual of the remaning ones. This fenomeno is present also a little bit in the complete method and less in the ward method and is called \textit{rich
+getting richer}, where the biggest cluster easily aggregate other little clusters.
+ 
 \subsection{Discussion of dendograms using different algorithms}
+
+\begin{figure}[h]
+  \begin{minipage}[h]{.50\textwidth}    
+    \includegraphics[width=1\textwidth]{img/ch3/hierarchical_complete}
+  \end{minipage}  
+  \begin{minipage}[h]{.50\textwidth}    
+    \includegraphics[width=1\textwidth]{img/ch3/hierarchical_single}
+  \end{minipage}  
+\end{figure}
+
+
+\begin{figure}[h]
+  \begin{minipage}[h]{.50\textwidth}    
+    \includegraphics[width=1\textwidth]{img/ch3/hierarchical_average}
+  \end{minipage}  
+  \begin{minipage}[h]{.50\textwidth}    
+    \includegraphics[width=1\textwidth]{img/ch3/hierarchical_ward}
+  \end{minipage}  
+\end{figure}
+
+
+As expected the clusters with complete link are joined at distance higher than the single link and average as it used the maximum distance between each couple of points the two clusters (versus the average and the minimum distance of the other two methods). We can't compare the three different methods with the ward approach as it use the variance as metric and not the distance, so the scale are differents.
+
+\medskip
+
+The single link method is the one that produce the worst clusterization, the average method produce a pretty good clusterization but it don't seems so balanced. Instead the complete link and the ward methods produce, according to the resulting dendograms, a pretty balanced clusterization other the customers.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Evaluation of clustering approaches and comparison of the clustering obtained}
+
+After running the three different clustering algorithms we can clearly see that:
+
+\medskip
+
+\begin{itemize}
+  \item K-Means is the only algorithm that produce a clustering of different sizes and pretty well balanced.
+  \item DBSCAN cannot provide a decent clustering even with different values of \textit{epsilon} and \textit{min-pts}, as we have always a big cluster that contains almost all of the core points and then only noise points.
+  \item Hierarchical using complete, single and average methods produce strongly unbalanced clustering, when the ward method is used we have a less unbalanced clustering but with a low silhouette score.
+\end{itemize}
+
+\medskip
+
+It's clearly that K-Means is the best algorithm among the three, as with its clustering we have made some classification over the cluster with low/high credit default.

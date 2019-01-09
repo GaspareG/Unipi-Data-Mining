@@ -61,17 +61,17 @@ For both of the models the two most important feature are ps-sep and ps-aug, the
 \textbf{Attribute}  & \textbf{Model 1} & \textbf{Model 2} \\ \rowcolor[HTML]{EFEFEF} 
  ps-sep             &  \textbf{25.13\%}       & \textbf{52.22\%}        \\
  ps-aug             &  \textbf{16.77\%}       & \textbf{16.16\%}        \\ \rowcolor[HTML]{EFEFEF} 
- ps-jul             &  \textbf{15.06\%}       & \textbf{3.38\%}         \\
- ps-may             &  \textbf{8.53\%}        & \textbf{2.13\%}         \\ \rowcolor[HTML]{EFEFEF} 
- ps-jun             &  \textbf{7.70\%}        & \textbf{3.54\%}         \\
- ps-apr             &  \textbf{6.85\%}        & \textbf{2.40\%}         \\ \rowcolor[HTML]{EFEFEF} 
- pa\_mean           &  \textbf{8.75\%}        & \textbf{5.11\%}         \\
- limit              &  \textbf{5.68\%}        & \textbf{5.84\%}         \\ \rowcolor[HTML]{EFEFEF} 
- ba\_mean           &  \textbf{2.52\%}        & \textbf{2.97\%}         \\
- age                &  \textbf{1.71\%}        & \textbf{3.17\%}         \\ \rowcolor[HTML]{EFEFEF} 
- education          &  \textbf{1.40\%}        & \textbf{1.37\%}         \\
- sex                &  \textbf{0.99\%}        & \textbf{0.62\%}         \\ \rowcolor[HTML]{EFEFEF} 
- status             &  \textbf{0.84\%}        & \textbf{1.03\%}         \\
+ ps-jul             &  \textbf{15.06\%}       & {3.38\%}         \\
+ ps-may             &  {8.53\%}        & {2.13\%}         \\ \rowcolor[HTML]{EFEFEF} 
+ ps-jun             &  {7.70\%}        & {3.54\%}         \\
+ ps-apr             &  {6.85\%}        & {2.40\%}         \\ \rowcolor[HTML]{EFEFEF} 
+ pa\_mean           &  {8.75\%}        & {5.11\%}         \\
+ limit              &  {5.68\%}        & {5.84\%}         \\ \rowcolor[HTML]{EFEFEF} 
+ ba\_mean           &  {2.52\%}        & {2.97\%}         \\
+ age                &  {1.71\%}        & {3.17\%}         \\ \rowcolor[HTML]{EFEFEF} 
+ education          &  {1.40\%}        & {1.37\%}         \\
+ sex                &  {0.99\%}        & {0.62\%}         \\ \rowcolor[HTML]{EFEFEF} 
+ status             &  {0.84\%}        & {1.03\%}         \\
 \end{tabular}
 \end{adjustbox}
 \end{table}
@@ -117,7 +117,7 @@ We have trained both selected models over the entire training set in order to pr
 \end{table}
 
 
-From this results we can see that the second model performe better over the test set, in particular it has a higher results in the recognition of credit\_default=yes.
+From this results we can see that the second model performe better over the test set, in particular it has a higher results in the recognition of default=\textbf{yes}.
 
 We tried to train again the second model but this time with a max\_depth equals to \textbf{5} (instead of \textbf{11}), and the results are better than expected:
 
@@ -138,7 +138,7 @@ We tried to train again the second model but this time with a max\_depth equals 
 \end{adjustbox}
 \end{table}
 
-Halving the height of the model \textbf{2} we obtain a simplier model that slightly improve the recognition credit\_default=yes. 
+Halving the height of the model \textbf{2} we obtain a simplier model that slightly improve the recognition default=\textbf{yes}. 
 
 \section{Decision trees interpretation}
 
@@ -154,8 +154,8 @@ From the tree we can see that the first node split the samples in a very unbalan
 
 \smallskip
 
-If we follow the False branch we are more likely to finish in a credit\_default=yes leaf, the only kind of customer with an high payment status in september who don't went in credit default is only the one with a low bill amount mean and a low credit card limit.
+If we follow the False branch we are more likely to finish in a default=\textbf{yes} leaf, the only kind of customer with an high payment status in september who don't went in credit default is only the one with a low bill amount mean and a low credit card limit.
 
 \smallskip
 
-On ther other side, the True branch of the first split, we are more likely to finish in a credit\_default=not leaf, the only kind of customer in this branch who went in credit default is the one with an high payment status in the month of August, April and June.
+On ther other side, the True branch of the first split, we are more likely to finish in a default=\textbf{no} leaf, the only kind of customer in this branch who went in credit default is the one with an high payment status in the month of August, April and June.

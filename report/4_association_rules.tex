@@ -97,21 +97,23 @@ The dataset doesn't contains a lot of missing values related to the most interes
 \begin{itemize}
   \item (age=\textbf{30-39}, status=\textbf{married}, education=\textbf{university}) $\rightarrow$ (sex=\textbf{female}):
   
-    \tab accuracy of \textbf{73.71\%} and support of \textbf{3.36\%}.
+    \tab accuracy of \textbf{73.71\%}, support of \textbf{3.36\%} and lift of \textbf{126}.
+    
   \item (payment status equals to \textbf{0} from april to august) $\rightarrow$ (ps\_sep=\textbf{0}):
   
-    \tab accuracy of \textbf{91.85\%} and support of \textbf{36.59\%}.
+    \tab accuracy of \textbf{91.85\%} and support of \textbf{36.59\%} and lift of \textbf{188}.
+
   \item (payment status equals to \textbf{0} from april to july) $\rightarrow$ (ps\_aug=\textbf{0}, ps\_sep=\textbf{0}):
   
-    \tab accuracy of \textbf{84.18\%} and support of \textbf{39.92\%}.
+    \tab accuracy of \textbf{84.18\%} and support of \textbf{39.92\%} and lift of \textbf{176}.
 
   \item (payment status equals to \textbf{0} from april to june) $\rightarrow$ (ps\_jul=\textbf{0}, ps\_aug=\textbf{0}, ps\_sep=\textbf{0}):
   
-    \tab accuracy of \textbf{76.43\%} and support of \textbf{43.97\%}.
+    \tab accuracy of \textbf{76.43\%} and support of \textbf{43.97\%} and lift of \textbf{178}.
 
   \item (payment status equals to \textbf{0} from april to may) $\rightarrow$ (ps\_jun=\textbf{0}, ps\_jul=\textbf{0}, ps\_aug=\textbf{0}, ps\_sep=\textbf{0}):
   
-    \tab accuracy of \textbf{68.60\%} and support of \textbf{48.99\%}.
+    \tab accuracy of \textbf{68.60\%} and support of \textbf{48.99\%} and lift of \textbf{175}.
 
 \end{itemize}
 
@@ -124,22 +126,27 @@ We first decide to test some rules over only the attributes relative to the paym
 \begin{itemize}
   \item (all \textbf{6} payment statuses equals to \textbf{0}) $\rightarrow$ (default=\textbf{no}):
   
-    \tab accuracy of \textbf{89.66\%} and support of \textbf{33.61\%}.
+    \tab accuracy of \textbf{89.66\%}, support of \textbf{33.61\%} and lift of \textbf{116}.
+    
   \item (at least \textbf{5} payment statuses equals to \textbf{0}) $\rightarrow$ (default=\textbf{no}):
   
-    \tab accuracy of \textbf{85.88\%} and support of \textbf{43.18\%}.
+    \tab accuracy of \textbf{85.88\%}, support of \textbf{43.18\%} and lift of \textbf{112}.
+    
   \item (at least \textbf{4} payment statuses equals to \textbf{0}) $\rightarrow$ (default=\textbf{no}):
   
-    \tab accuracy of \textbf{83.14\%} and support of \textbf{50.66\%}.
+    \tab accuracy of \textbf{83.14\%}, support of \textbf{50.66\%} and lift of \textbf{110}.
+    
   \item (at least \textbf{3} payment statuses equals to \textbf{0}) $\rightarrow$ (default=\textbf{no}):
   
-    \tab accuracy of \textbf{80.90\%} and support of \textbf{57.37\%}.
+    \tab accuracy of \textbf{80.90\%}, support of \textbf{57.37\%} and lift of \textbf{108}.
+    
   \item (at least \textbf{2} payment statuses equals to \textbf{0}) $\rightarrow$ (default=\textbf{no}):
   
-    \tab accuracy of \textbf{78.98\%} and support of \textbf{64.93\%}.
+    \tab accuracy of \textbf{78.98\%}, support of \textbf{64.93\%} and lift of \textbf{106}.
+    
   \item (at least \textbf{1} payment statuses equals to \textbf{0}) $\rightarrow$ (default=\textbf{no}):
   
-    \tab accuracy of \textbf{78.61\%} and support of \textbf{69.88\%}.
+    \tab accuracy of \textbf{78.61\%}, support of \textbf{69.88\%} and lift of \textbf{104}.
 
 \end{itemize} 
 
@@ -152,10 +159,12 @@ By introducing the condition sex=female in the previous rules doesn't change a l
 \begin{itemize}
   \item (sex=\textbf{female}, all \textbf{6} payment statuses equals to \textbf{0}) $\rightarrow$ (default=\textbf{no}):
   
-    \tab precision \textbf{90.22\%}, support \textbf{20.86\%}.
+    \tab precision \textbf{90.22\%}, support \textbf{20.86\%} and lift of \textbf{117}.
+    
   \item (sex=\textbf{female}, at least \textbf{5} payment statuses equals to \textbf{0}) $\rightarrow$ (default=\textbf{no}):
   
-    \tab precision \textbf{88.80\%}, support \textbf{26.58\%}.
+    \tab precision \textbf{88.80\%}, support \textbf{26.58\%} and lift of \textbf{117}.
+    
 \end{itemize}
 
-In particular we have a big decrease in support with a small increase in precision.
+In particular we have a big decrease in support with a small increase in precision, but the lift increase.
