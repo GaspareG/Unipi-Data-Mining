@@ -19,14 +19,31 @@ The firsts frequent itemsets appears when we set the minimum support to $40\%$, 
   \item support: 44.81\%, items: ps-may=0, default = false
 \end{enumerate}
 
-In particular we have $9$ itemsets with default equals to false and none with credit default equals to true.
+In particular we have $9$ itemsets with default equals to false and none with credit default equals to false.
 
-Choosing a minimum support of $30\%$ results in $131$ itemsets and half of them include the credit default equals to true.
+\smallskip
 
+Choosing a minimum support of $30\%$ results in $131$ itemsets and half of them include the credit default equals to false.
+
+\smallskip
+
+The first frequent itemsets that contains the credit default equals to true is (sex=female, default=true) with a support of $13\%$, unfortunatelly we don't any significant and not naive frequen itemset with a positive credit default so we can only focus on the other ones.
 
 \section{Discussion of the most interesting frequent patterns}
 
-Cose
+An interesting frequent itemset is the one which have all the six payment statuses equals to $0$ and default to false with a support of $30.13\%$. This means, due to the properties of the support, that all its subsets (in particular the ones which include default to false and one or more payment status to zero) are frequent itemsets too.
+
+\smallskip
+
+Exluding itemsets which include only payment status attributes or the naive ones, we have also other interesting itemsets, for example:
+
+\begin{enumerate}
+  \item support: 22.44\%, items: education=university, sex=female, default=false
+  \item support: 21.29\%, items: age=30, sex=female, default=false
+  \item support: 20.78\%, items: status=single, sex=female, default=false
+\end{enumerate}
+
+We can see that there are some interesting correlation with the sex=female and others frequent attibutes (and of course, as said before, with all the payment status equals to 0).
 
 \section{Association rules extraction with different values of confidence}
 
