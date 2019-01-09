@@ -7,16 +7,16 @@ As we have a lot of categorical attributes with a lot of different values we don
 The firsts frequent itemsets appears when we set the minimum support to $40\%$, in this case we have a total of 34 itemsets, the first 10 are:
 
 \begin{enumerate}
-  \item support: 49.55\%, items: (ps-jun=0, ps-may=0)
-  \item support: 48.99\%, items: (ps-apr=0, ps-may=0)
-  \item support: 48.44\%, items: (sex=female, default=false)
-  \item support: 48.21\%, items: (ps-jul=0, ps-jun=0)
-  \item support: 47.69\%, items: (ps-sep=0, ps-aug=0)
-  \item support: 47.58\%, items: (ps-aug=0, ps-jul=0)
-  \item support: 45.75\%, items: (ps-apr=0, ps-jun=0)
-  \item support: 45.42\%, items: (ps-jul=0, ps-may=0)
-  \item support: 45.31\%, items: (ps-aug=0, ps-jun=0)
-  \item support: 44.81\%, items: (ps-may=0, default = false)
+  \item support: 49.55\%, items: (ps-jun=0, ps-may=0).
+  \item support: 48.99\%, items: (ps-apr=0, ps-may=0).
+  \item support: 48.44\%, items: (sex=female, default=false).
+  \item support: 48.21\%, items: (ps-jul=0, ps-jun=0).
+  \item support: 47.69\%, items: (ps-sep=0, ps-aug=0).
+  \item support: 47.58\%, items: (ps-aug=0, ps-jul=0).
+  \item support: 45.75\%, items: (ps-apr=0, ps-jun=0).
+  \item support: 45.42\%, items: (ps-jul=0, ps-may=0).
+  \item support: 45.31\%, items: (ps-aug=0, ps-jun=0).
+  \item support: 44.81\%, items: (ps-may=0, default = false).
 \end{enumerate}
 
 In particular we have $9$ itemsets with default equals to false and none with credit default equals to false.
@@ -38,9 +38,9 @@ An interesting frequent itemset is the one which have all the six payment status
 Exluding itemsets which include only payment status attributes or the naive ones, we have also other interesting itemsets, for example:
 
 \begin{enumerate}
-  \item support: 22.44\%, items: (education=university, sex=female, default=false)
-  \item support: 21.29\%, items: (age=30, sex=female, default=false)
-  \item support: 20.78\%, items: (status=single, sex=female, default=false)
+  \item support: 22.44\%, items: (education=university, sex=female, default=false).
+  \item support: 21.29\%, items: (age=30, sex=female, default=false).
+  \item support: 20.78\%, items: (status=single, sex=female, default=false).
 \end{enumerate}
 
 We can see that there are some interesting correlation with the sex=female and others frequent attibutes (and of course, as said before, with all the payment status equals to 0).
@@ -56,38 +56,36 @@ Trying with some different combination of support/confidence we can find some in
 Rules for which it is default=false:
 
 \begin{itemize}
-  \item support of $20\%$ and confidence of $90\%$: 
-  sex=female and at least $4$ different payment statuses equals to 0.
+  \item (sex=female, at least $4$ different payment statuses equals to 0):
+  
+  \tab support of $20\%$ and confidence of $90\%$.
 
-  \item support of $2\%$ and confidence of $95\%$: 
-  sex=female, average bill amount=$50000$ NTD and at least $4$ different payment statuses equals to 0.
+  \item (sex=female, ba\_mean=$50000$ NTD, at least $4$ different payment statuses equals to 0):
+  
+  \tab support of $2\%$ and confidence of $95\%$.
 
 \end{itemize}
 
 Rules that doesn't include credit default attribute:
 
 \begin{itemize}
-  \item support of $30\%$ and confidence of $99\%$: 
-  ps-sep=0 and at least two payment statuses equals to 0 (from april to july) $\rightarrow$ ps-aug=0.
+  \item (ps-sep=0, at least two payment statuses equals to 0 (from april to july)) $\rightarrow$ (ps-aug=0):
+  \tab support of $30\%$ and confidence of $99\%$.
 \end{itemize}
 
 \section{Discussion of the most interesting rules}
 
-We can see again that the most interesting attribute values in the rules are sex=female and payment status=0 for all the months. 
-
-\smallskip
-
-There are a lot of rules with both high accuracy and support of the form 
+We can see again that the most interesting attribute values in the rules are sex=female and payment status=0 for all the months. There are a lot of rules with both high accuracy and support which consists in combinations of these two kind of attributes. 
 
 \smallskip
 
 A couple of rules that don't involve payment amounts:
 
 \begin{itemize}
-  \item education=graduate school, sex=female $\rightarrow$ credit default = false:
+  \item (education=graduate school, sex=female) $\rightarrow$ (credit default = false):
   
     \tab accuracy $81.68\%$, support $16.87\%$
-  \item age=30-39, sex=female $\rightarrow$ credit default = false:
+  \item (age=30-39, sex=female) $\rightarrow$ (credit default = false):
   
     \tab accuracy $80.71\%$, support $21.29\%$
 \end{itemize}
@@ -97,19 +95,23 @@ A couple of rules that don't involve payment amounts:
 The dataset doesn't contains a lot of missing values related to the most interesting rules, so we decide to simulate the substition, in this way we can evalute the accuracy of these rules.
 
 \begin{itemize}
-  \item (age=30-39, status=married, educatio=university) $\rightarrow$ sex=female:
+  \item (age=30-39, status=married, education=university) $\rightarrow$ (sex=female):
   
     \tab accuracy $73.71\%$, support $3.36\%$
-  \item (payment status equals to 0 from march to august) $\rightarrow$ ps\_sep=0:
+  \item (payment status equals to 0 from april to august) $\rightarrow$ (ps\_sep=0):
   
     \tab accuracy $91.85\%$, support $36.59\%$
-  \item (payment status equals to 0 from march to july) $\rightarrow$ (ps\_aug=0, ps\_sep=0):
+  \item (payment status equals to 0 from april to july) $\rightarrow$ (ps\_aug=0, ps\_sep=0):
   
     \tab accuracy $84.18\%$, support $39.92\%$
 
-  \item (payment status equals to 0 from march to june) $\rightarrow$ (ps\_jul=0, ps\_aug=0, ps\_sep=0):
+  \item (payment status equals to 0 from april to june) $\rightarrow$ (ps\_jul=0, ps\_aug=0, ps\_sep=0):
   
     \tab accuracy $76.43\%$, support $43.97\%$
+
+  \item (payment status equals to 0 from april to may) $\rightarrow$ (ps\_jun=0, ps\_jul=0, ps\_aug=0, ps\_sep=0):
+  
+    \tab accuracy $68.60\%$, support $48.99\%$
 
 \end{itemize}
 
@@ -120,24 +122,24 @@ The dataset doesn't contains a lot of missing values related to the most interes
 We first decide to test some rules over only the attributes relative to the payment status:
 
 \begin{itemize}
-  \item (all 6 payment statuses equals to 0) $\rightarrow$ credit default = false:
+  \item (all 6 payment statuses equals to 0) $\rightarrow$ (credit\_default = false):
   
-    \tab accuracy $89.66\%$, support $33.61\%$
-  \item (at least 5 payment statuses equals to 0) $\rightarrow$ credit default = false:
+    \tab accuracy $89.66\%$, support $33.61\%$.
+  \item (at least 5 payment statuses equals to 0) $\rightarrow$ (credit\_default = false):
   
-    \tab accuracy $85.88\%$, support $43.18\%$
-  \item (at least 4 payment statuses equals to 0) $\rightarrow$ credit default = false:
+    \tab accuracy $85.88\%$, support $43.18\%$.
+  \item (at least 4 payment statuses equals to 0) $\rightarrow$ (credit\_default = false):
   
-    \tab accuracy $83.14\%$, support $50.66\%$
-  \item (at least 3 payment statuses equals to 0) $\rightarrow$ credit default = false:
+    \tab accuracy $83.14\%$, support $50.66\%$.
+  \item (at least 3 payment statuses equals to 0) $\rightarrow$ (credit\_default = false):
   
-    \tab accuracy $80.90\%$, support $57.37\%$
-  \item (at least 2 payment statuses equals to 0) $\rightarrow$ credit default = false:
+    \tab accuracy $80.90\%$, support $57.37\%$.
+  \item (at least 2 payment statuses equals to 0) $\rightarrow$ (credit\_default = false):
   
-    \tab accuracy $78.98\%$, support $64.93\%$
-  \item (at least 1 payment statuses equals to 0) $\rightarrow$ credit default = false:
+    \tab accuracy $78.98\%$, support $64.93\%$.
+  \item (at least 1 payment statuses equals to 0) $\rightarrow$ (credit\_default = false):
   
-    \tab accuracy $78.61\%$, support $69.88\%$
+    \tab accuracy $78.61\%$, support $69.88\%$.
 
 \end{itemize} 
 
@@ -148,10 +150,10 @@ With an high accuracy and support we can conclude that these are good rules to p
 By introducing the condition sex=female in the previous rules doesn't change a lot the results, for example:
 
 \begin{itemize}
-  \item sex=female,  (all 6 payment statuses equals to 0) $\rightarrow$ credit default = false:
+  \item (sex=female, all 6 payment statuses equals to 0) $\rightarrow$ (credit\_default = false):
   
     \tab precision $90.22\%$, support $20.86\%$
-  \item sex=female, (at least 5 payment statuses equals to 0) $\rightarrow$ credit default = false:
+  \item (sex=female, at least 5 payment statuses equals to 0) $\rightarrow$ (credit\_default = false):
   
     \tab precision $88.80\%$, support $26.58\%$
 \end{itemize}

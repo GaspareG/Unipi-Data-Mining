@@ -246,8 +246,6 @@ As last transformation we have normalized all the continuous attribute using the
   So we add two new attributes to the dataset called \textit{ba\_mean} and \textit{pa\_mean} calculated as the mean of all the bill/payment amount for each customer.
   
   We again plot the correlation matrix and we can see that both \textit{ba\_mean} and \textit{pa\_mean} have a high correlations with their relative attributes. For this reasons we drop all the twelve bill/payment amounts attributes and introduce their mean as new attributes. 
-
-
     
   \end{minipage}
 \end{figure}

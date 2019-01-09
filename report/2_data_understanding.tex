@@ -32,7 +32,7 @@ For these attributes the mode of the bin has also been reported as it is more re
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h]
-  \begin{minipage}[h]{.45\textwidth}
+  \begin{minipage}[h]{.50\textwidth}
     \includegraphics[width=.95\textwidth]{img/ch2/education}
   \end{minipage}
   \begin{minipage}[h]{.50\textwidth}
@@ -64,7 +64,7 @@ For these attributes the mode of the bin has also been reported as it is more re
         
         The default rate is very similar for all the status (around the $25\%$).
   \end{minipage}
-  \begin{minipage}[h]{.45\textwidth}
+  \begin{minipage}[h]{.50\textwidth}
     \includegraphics[width=.95\textwidth]{img/ch2/status}
   \end{minipage}
 \end{figure}
@@ -72,7 +72,7 @@ For these attributes the mode of the bin has also been reported as it is more re
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \smallskip
 \begin{figure}[h]
-  \begin{minipage}[h]{.45\textwidth}
+  \begin{minipage}[h]{.50\textwidth}
     \includegraphics[width=.95\textwidth]{img/ch2/age}
   \end{minipage}
   \begin{minipage}[h]{.50\textwidth}
@@ -109,7 +109,7 @@ For these attributes the mode of the bin has also been reported as it is more re
         The default rate in this case is very different for each bin as it decrease with the limit: the first bin has a default rate of $38\%$, the second one of $26\%$ and around $10\%$ for the last bin.
         
   \end{minipage}
-  \begin{minipage}[h]{.45\textwidth}
+  \begin{minipage}[h]{.50\textwidth}
     \includegraphics[width=.95\textwidth]{img/ch2/limit}
   \end{minipage}
 
@@ -119,10 +119,10 @@ For these attributes the mode of the bin has also been reported as it is more re
 
 \smallskip
 \begin{figure}[h]
-  \begin{minipage}[h]{.45\textwidth}
+  \begin{minipage}[h]{.50\textwidth}
     \includegraphics[width=.95\textwidth]{img/ch2/payment_status_1}
   \end{minipage}
-  \begin{minipage}[h]{.55\textwidth}
+  \begin{minipage}[h]{.50\textwidth}
         {\Large \textbf{Payment status}}
         
         History of past payments.
@@ -151,7 +151,7 @@ For these attributes the mode of the bin has also been reported as it is more re
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \smallskip
 \begin{figure}[h]
-  \begin{minipage}[h]{.55\textwidth}
+  \begin{minipage}[h]{.50\textwidth}
         {\Large \textbf{Bill Amount}}
         
         Amount of bill statement (expressed in NT dollar).
@@ -163,7 +163,7 @@ For these attributes the mode of the bin has also been reported as it is more re
         The mean increases according to the month, it start from $38621$ of April up to $51490$ of September. On ther other hand the credit default rate is always around the $20\%$ for all the bins (except some border case for small bin).
         
   \end{minipage}
-  \begin{minipage}[h]{.45\textwidth}
+  \begin{minipage}[h]{.50\textwidth}
     \includegraphics[width=.95\textwidth]{img/ch2/bill_amount_1}
   \end{minipage}
 \end{figure}
@@ -171,10 +171,10 @@ For these attributes the mode of the bin has also been reported as it is more re
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \smallskip
 \begin{figure}[h]
-  \begin{minipage}[h]{.45\textwidth}
+  \begin{minipage}[h]{.50\textwidth}
     \includegraphics[width=.95\textwidth]{img/ch2/payment_amount_1}
   \end{minipage}
-  \begin{minipage}[h]{.55\textwidth}
+  \begin{minipage}[h]{.50\textwidth}
         {\Large \textbf{Payment amount}}
         
         Amount of payment (expressed in NT dollar).
@@ -186,7 +186,7 @@ For these attributes the mode of the bin has also been reported as it is more re
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \smallskip
 \begin{figure}[ht]
-  \begin{minipage}[h]{.60\textwidth}
+  \begin{minipage}[h]{.50\textwidth}
         {\Large \textbf{Credit default}}
         
         Credit card default.
@@ -195,7 +195,7 @@ For these attributes the mode of the bin has also been reported as it is more re
         The credit card default is a status that is applied to the customer when a list of terms are missed (like make the minimum required payment), and it affects for example your possibility to demand for a loan or to get another credit card. In the dataset we have $2212$ customer in credit card default and $7788$ not. 
         
   \end{minipage}
-  \begin{minipage}[h]{.40\textwidth}
+  \begin{minipage}[h]{.50\textwidth}
     \includegraphics[width=.95\textwidth]{img/ch2/credit_default}
   \end{minipage}
 \end{figure}
@@ -217,14 +217,14 @@ For these attributes the mode of the bin has also been reported as it is more re
 
     Regarding the duplicates, in the dataset there are only two identical records so we decide to not remove the single duplicate as it is not a big problem.
     Regarding the missing values we have $100$ records with missing sex, $127$ records, $1822$ records with missing status and $951$ records with missing age. We decided to not remove them as they are a big part of the dataset, instead we replace the missing ages with the average age (which is $35.49$). We set the missing statuses to \textit{others} as we think that it can include some particular cases (like engaged or cohabitant). We again set the missing educations to \textit{others} and the missing sex to female as they are the more frequents in the dataset. 
-    For the outliers we first normalize all the continuous attributes using the z-score algorithm (in this way we can visualize all the attributes in the same scale). Then we plot them in a boxplot and we can see that in the dataset only $3$ values are under the lower adjacent value, instead over the upper adjacent value we have $50$ limits, $211$ limits and an average of $895$ for the bill/payment amounts. As the attributes related to the payment amounts are the only one that have values over the $10$ times std, we decide to remove them to not have to work with outliers too high. After the cleaning part the dataset is composed of $9121$ customers. 
+    For the outliers we first normalize all the continuous attributes using the z-score algorithm (in this way we can visualize all the attributes in the same scale). Then we plot them in a boxplot and we can see that in the dataset only $3$ values are under the lower adjacent value, instead over the upper adjacent value we have $50$ limits, $211$ limits and an average of $895$ for the bill/payment amounts. As the attributes related to the payment amounts are the only one that have values over the $10$ times the std, we decide to remove them to not have to work with outliers too high. After the cleaning part the dataset is composed of $9121$ customers. 
   \end{minipage}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Variables transformations}
 
-We decide to transform the \textit{credit\_default} attribute from yes\/no to 1\/2 in order to better visualize them in the following plots. For the same reason and to limit the dispersion we decided to divide in bin the continuous attributes. In particular we divide ages in bin of $5$ years, payment amounts in bin of $1000$ NTD, limits and bill amounts in bin of $10000$ NTD.
+We decide to transform the \textit{credit\_default} attribute from yes\/no to 1\/2 in order to better visualize them in the following plots. For the same reason and to limit the dispersion we decided to divide in bin the continuous attributes. In particular we divide ages in bin of $10$ years, payment amounts in bin of $1000$ NTD, limits and bill amounts in bin of $10000$ NTD.
 
 As last transformation we have normalized all the continuous attribute using the min-max scaling.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
