@@ -1,6 +1,6 @@
 \chapter{Data Understanding}
 
-The dataset is composed by 10000 records. Each record represents a customer, described by $24$ different attributes.
+The dataset is composed by \textbf{10000} records. Each record represents a customer, described by \textbf{24} different attributes.
 
 \medskip
 
@@ -21,9 +21,9 @@ For these attributes the mode of the bin has also been reported as it is more re
         
         Gender of the customer.
         
-        A binary attribute that can assume the values of \textit{male} ($3868$ of $10000$) or \textit{female} ($6032$ of $10000$). 
+        A binary attribute that can assume the values of \textit{male} (\textbf{3868} of $10000$) or \textit{female} (\textbf{6032} of $10000$). 
         
-        Both of the gender values have a similar credit default rate ($25\%$ for males and $20\%$ for females).
+        Both of the gender values have a similar credit default rate (\textbf{25\%} for males and \textbf{20\%} for females).
   \end{minipage}
   \begin{minipage}[h]{.50\textwidth}
     \includegraphics[width=.95\textwidth]{img/ch2/sex}
@@ -41,11 +41,11 @@ For these attributes the mode of the bin has also been reported as it is more re
         Qualification of the customer.
         
         A categorical attribute that can assume the values of 
-        \textit{university} ($4685$ of $10000$),
-        \textit{high school} ($1672$ of $10000$),
-        \textit{graduate school} ($3480$ of $10000$) or
-        \textit{others} ($36$ of $10000$).
-        The default rate is again very similar for all the qualifications (around the $20\%$), except for the \textit{others} which is equal to $5\%$, but its number of records is very low to make any assumptions.
+        \textit{university} (\textbf{4685} of $10000$),
+        \textit{high school} (\textbf{1672} of $10000$),
+        \textit{graduate school} (\textbf{3480} of $10000$) or
+        \textit{others} (\textbf{36} of $10000$).
+        The default rate is again very similar for all the qualifications (around the \textbf{20\%}), except for the \textit{others} which is equal to \textbf{5\%}, but its number of records is very low to make any assumptions.
   \end{minipage}
 \end{figure}
 
@@ -58,11 +58,11 @@ For these attributes the mode of the bin has also been reported as it is more re
         Marital status of the customer.
         
         A categorical attribute that can assume the values of 
-        \textit{married} ($4685$ of $10000$),
-        \textit{single} ($3757$ of $10000$) or
-        \textit{other status} ($75$ of $10000$).
+        \textit{married} (\textbf{4685} of $10000$),
+        \textit{single} (\textbf{3757} of $10000$) or
+        \textit{other status} (\textbf{75} of $10000$).
         
-        The default rate is very similar for all the status (around the $25\%$).
+        The default rate is very similar for all the status (around the \textbf{25\%}).
   \end{minipage}
   \begin{minipage}[h]{.50\textwidth}
     \includegraphics[width=.95\textwidth]{img/ch2/status}
@@ -80,15 +80,15 @@ For these attributes the mode of the bin has also been reported as it is more re
         
         Age of the customer.
         
-        An attribute that in the dataset assume integer values in $[21, 75]$, the lower limit to $21$ is due that in Taiwan the age of majority is $20$, on the other hand the upper limit can be as high as humanly possible.
+        An attribute that in the dataset assume integer values in [\textbf{21}, \textbf{75}], the lower limit to \textbf{21} is due that in Taiwan the age of majority is \textbf{20}, on the other hand the upper limit can be as high as humanly possible.
         
-        The average age is $35.49$, the standard deviation is $9.22$.
-        The mode is $29$ and the median is $34$.
-        The $50\%$ of the ages lie in $[28, 41]$.
+        The average age is \textbf{35.49}, the standard deviation is \textbf{9.22}.
+        The mode is \textbf{29} and the median is \textbf{34}.
+        The \textbf{50\%} of the ages lie in [\textbf{28}, \textbf{41}].
         
-        We decide to set a bin to $5$ year as it represent a good trade-off between the size and number of bins. The bin with most elements is $25$.
+        We decide to set a bin to \textbf{5} year as it represent a good trade-off between the size and number of bins. The bin with most elements is \textbf{25}.
         
-        Again the default rate is similar for all the bins (around $25\%$).
+        Again the default rate is similar for all the bins (around \textbf{25\%}).
   \end{minipage}
 \end{figure}
 
@@ -102,11 +102,11 @@ For these attributes the mode of the bin has also been reported as it is more re
         Limit of the credit card (expressed in NT dollar).
         
         It is the maximum amount the credit card company will let borrow on the account, 
-        a continuous attribute that can assume values in $[10000, 780000]$ (all values are multiples of $10000$).
+        a continuous attribute that can assume values in [\textbf{10000}, \textbf{780000}] (all values are multiples of \textbf{10000}).
         
-        The average is $167197$ and the standard deviation is $128975$, $50\%$ of the ages lie in $[50000, 240000]$. The bin with most elements is $50000$.
+        The average is \textbf{167197} and the standard deviation is \textbf{128975}, \textbf{50\%} of the ages lie in [\textbf{50000}, \textbf{240000}]. The bin with most elements is \textbf{50000}.
         
-        The default rate in this case is very different for each bin as it decrease with the limit: the first bin has a default rate of $38\%$, the second one of $26\%$ and around $10\%$ for the last bin.
+        The default rate in this case is very different for each bin as it decrease with the limit: the first bin has a default rate of \textbf{38\%}, the second one of \textbf{26\%} and around \textbf{10\%} for the last bin.
         
   \end{minipage}
   \begin{minipage}[h]{.50\textwidth}
@@ -128,22 +128,22 @@ For these attributes the mode of the bin has also been reported as it is more re
         History of past payments.
         
         Six categorical attributes that represent the repayment status, one for each month between April and September.
-        A payment status is an integer number in the range $[-2, 9]$ where:
+        A payment status is an integer number in the range [\textbf{-2}, \textbf{9}] where:
         
-         $-2$ = no consumption
+         \textbf{-2} = no consumption
          
-         $-1$ = paid in full
+         \textbf{-1} = paid in full
          
-         $0$ = the use of revolving credit
+         \textbf{0} = the use of revolving credit
 
-         $1$ = payment delay for one month
+         \textbf{1} = payment delay for one month
 
-         $2$ = payment delay for two months
+         \textbf{2} = payment delay for two months
          
          ...
          
          The distribution of the payment status over the six months are all very similar to each other so we only illustate the first one for simplicity.
-         The most frequent bin is always the $0$ and around $90\%$ of the customers always lies between $-2$ and $0$. 
+         The most frequent bin is always the \textbf{0} and around \textbf{90\%} of the customers always lies between \textbf{-2} and \textbf{0}. 
         
   \end{minipage}
 \end{figure}
@@ -158,9 +158,9 @@ For these attributes the mode of the bin has also been reported as it is more re
         
         Six continuous attributes, again one for each month between April and September.
         
-        The bill amount is the sum of all the purchases, payments and other debits and credits made to your credit card account within the billing cycle. The values are in range $[-209051, 616836]$.
-        As in the payment status, the distribution of the bill amount are nearly the same over the six month. The most frequent by is always the 0 (from $0$ NTD to $49999$ NTD).
-        The mean increases according to the month, it start from $38621$ of April up to $51490$ of September. On ther other hand the credit default rate is always around the $20\%$ for all the bins (except some border case for small bin).
+        The bill amount is the sum of all the purchases, payments and other debits and credits made to your credit card account within the billing cycle. The values are in range [\textbf{-209051}, \textbf{616836}].
+        As in the payment status, the distribution of the bill amount are nearly the same over the six month. The most frequent by is always the \textbf{0} (from \textbf{0} NTD to \textbf{49999} NTD).
+        The mean increases according to the month, it start from \textbf{38621} of April up to \textbf{51490} of September. On ther other hand the credit default rate is always around the \textbf{20\%} for all the bins (except some border case for small bin).
         
   \end{minipage}
   \begin{minipage}[h]{.50\textwidth}
@@ -180,7 +180,7 @@ For these attributes the mode of the bin has also been reported as it is more re
         Amount of payment (expressed in NT dollar).
         
         Six continuous attribute, one for each month between April and September.
-        It represent the sum of all the payments made by the customer with the credit card in the last month. The distribution of the payment status over the six months are again all very similar to each other. The most frequent bin is always the 0 (from $0$ NTD to $4999$ NTD), which always include around the $75\%$ of the customers. The mean is around $4719$ and $5973$ without any particular distribution other the months.
+        It represent the sum of all the payments made by the customer with the credit card in the last month. The distribution of the payment status over the six months are again all very similar to each other. The most frequent bin is always the \textbf{0} (from \textbf{0} NTD to \textbf{4999} NTD), which always include around the \textbf{75\%} of the customers. The mean is around \textbf{4719} NTD and \textbf{5973} NTD without any particular distribution other the months.
   \end{minipage}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -192,7 +192,7 @@ For these attributes the mode of the bin has also been reported as it is more re
         Credit card default.
         
         A boolean attribute that represents the credibility of the customer.
-        The credit card default is a status that is applied to the customer when a list of terms are missed (like make the minimum required payment), and it affects for example your possibility to demand for a loan or to get another credit card. In the dataset we have $2212$ customer in credit card default and $7788$ not. 
+        The credit card default is a status that is applied to the customer when a list of terms are missed (like make the minimum required payment), and it affects for example your possibility to demand for a loan or to get another credit card. In the dataset we have \textbf{2212} customer in credit card default and \textbf{7788} not. 
         
   \end{minipage}
   \begin{minipage}[h]{.50\textwidth}
@@ -216,15 +216,15 @@ For these attributes the mode of the bin has also been reported as it is more re
     In this part we have checked for duplicates, missing values and outliers, in order to reduce the quantity of data and to avoid that their presence could negatively affect the analysis.
 
     Regarding the duplicates, in the dataset there are only two identical records so we decide to not remove the single duplicate as it is not a big problem.
-    Regarding the missing values we have $100$ records with missing sex, $127$ records, $1822$ records with missing status and $951$ records with missing age. We decided to not remove them as they are a big part of the dataset, instead we replace the missing ages with the average age (which is $35.49$). We set the missing statuses to \textit{others} as we think that it can include some particular cases (like engaged or cohabitant). We again set the missing educations to \textit{others} and the missing sex to female as they are the more frequents in the dataset. 
-    For the outliers we first normalize all the continuous attributes using the z-score algorithm (in this way we can visualize all the attributes in the same scale). Then we plot them in a boxplot and we can see that in the dataset only $3$ values are under the lower adjacent value, instead over the upper adjacent value we have $50$ limits, $211$ limits and an average of $895$ for the bill/payment amounts. As the attributes related to the payment amounts are the only one that have values over the $10$ times the std, we decide to remove them to not have to work with outliers too high. After the cleaning part the dataset is composed of $9121$ customers. 
+    Regarding the missing values we have \textbf{100} records with missing sex, \textbf{127} records, \textbf{1822} records with missing status and \textbf{951} records with missing age. We decided to not remove them as they are a big part of the dataset, instead we replace the missing ages with the average age (which is \textbf{35.49}). We set the missing statuses to \textit{others} as we think that it can include some particular cases (like engaged or cohabitant). We again set the missing educations to \textit{others} and the missing sex to female as they are the more frequents in the dataset. 
+    For the outliers we first normalize all the continuous attributes using the z-score algorithm (in this way we can visualize all the attributes in the same scale). Then we plot them in a boxplot and we can see that in the dataset only \textbf{3} values are under the lower adjacent value, instead over the upper adjacent value we have \textbf{50} limits, \textbf{211} ages and an average of \textbf{895} for the bill/payment amounts. As the attributes related to the payment amounts are the only one that have values over the \textbf{10} times the std, we decide to remove them to not have to work with outliers too high. After the cleaning part the dataset is composed of \textbf{9121} customers. 
   \end{minipage}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Variables transformations}
 
-We decide to transform the \textit{credit\_default} attribute from yes\/no to 1\/2 in order to better visualize them in the following plots. For the same reason and to limit the dispersion we decided to divide in bin the continuous attributes. In particular we divide ages in bin of $10$ years, payment amounts in bin of $1000$ NTD, limits and bill amounts in bin of $10000$ NTD.
+We decide to transform the \textit{credit\_default} attribute from yes/no to 1/0 in order to better visualize them in the following plots. For the same reason and to limit the dispersion we decided to divide in bin the continuous attributes. In particular we divide ages in bin of \textbf{10} years, payment amounts in bin of \textbf{1000} NTD, limits and bill amounts in bin of \textbf{10000} NTD.
 
 As last transformation we have normalized all the continuous attribute using the min-max scaling.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -240,10 +240,9 @@ As last transformation we have normalized all the continuous attribute using the
 
   Analyzing the correlation matrix of all the continuous attribute we can clearly see that all the attributes related to the bill amounts are strongly correlated.
 
-  All the pairs of bill amounts have a correlation between $0.8$ and $0.95$ so we decide to analize further this $6$ attributes.
+  All the pairs of bill amounts have a correlation between \textbf{0.86} and \textbf{0.98} so we decide to analize further this $6$ attributes.
     
-  
-  So we add two new attributes to the dataset called \textit{ba\_mean} and \textit{pa\_mean} calculated as the mean of all the bill/payment amount for each customer.
+  We add two new attributes to the dataset called \textit{ba\_mean} and \textit{pa\_mean} calculated as the mean of all the bill/payment amount for each customer.
   
   We again plot the correlation matrix and we can see that both \textit{ba\_mean} and \textit{pa\_mean} have a high correlations with their relative attributes. For this reasons we drop all the twelve bill/payment amounts attributes and introduce their mean as new attributes. 
     

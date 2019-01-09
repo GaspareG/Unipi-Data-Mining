@@ -4,15 +4,21 @@
 
 This report is aimed to illustrate the phases and the results of the analysis that we have conduced regarding the customers default payments in Taiwan. 
 In particular our target is to better understand under which conditions we should consider a client credibile or not.
-\smallskip
+
+\medskip
 
 Each customer is modelled by a record in the dataset, which is composed by $24$ attributes that describes its personal information and its banking data (like the credit limit, payment amount and others).
+
+\medskip
 
 The analysis is composed in 4 phases:
 
 \begin{itemize}
-  \item Semantical analysis and data manipulations of each customer (data cleaning, variables transformation, redundant variables, ...)
+  \item Semantical analysis and data manipulations of each customer, where we trying to understand the attributes distributions, cleaning of the data, variables transformation like binning or mapping labels, analysis of the correlation matrix to see if the dataset contains redundant variables that we can remove.
+  
   \item Use of 3 clustering algorithms (K-Means, DBSCAN, Hierarchical clustering) to group customers according to similarity properties in order to formulate hypotheses about customers credibility.
+
   \item Verification of the hypotheses given in the previous phase via the determination of frequent itemsets and association rules, in order to find co-occurrences between attributes.
-  \item Classification of the customers between who fail to make a payment by time and regular customers.
+
+  \item Classification of the customers between who went in credit default or not  by creating different models using the Random Tree Classifier and analyze their performance with various metrics.
 \end{itemize}
