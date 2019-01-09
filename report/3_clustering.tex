@@ -127,12 +127,47 @@ For the \textcolor{red}{Cluster 1} the customers in credit defaults have an high
 
 \medskip
 
-For the \textcolor{brown}{Cluster 5} the customers in credit defaults have an higher credit card limit and payment amount mean but a lower average age (compared to the customers not in credit default from the same cluster).
+For the \textcolor{brown}{Cluster 5} the customers in credit defaults have a lower age and bill/payment amount mean (compared to the customers not in credit default from the same cluster).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{DBSCAN}
 \subsection{Choice of attributes and distance function}
+
+For the clustering via the DBSCAN algorithm we have used the same attributes of the K-Means algorithm (\textit{limit}, \textit{ba\_mean} and \textit{pa\_mean} ). As metric we have used again the euclidean distance for the same reasons.
+
 \subsection{Study of the clustering parameters}
+
+In order to execute the DBSCAN algorithm we need to choose the values of two parameters: \textit{epsilon} for the radius of the circle for each point and \textit{min-pts} as the minimum number of points (including itself) withing the radius to consider a customer as core point.
+
+\medskip
+
+To choose the best value of \textit{epsilon} we have plotted, for each value of \textit{min-pts} in range $[2, 50]$ the sorted distances from the \textit{min-pts}-th point.
+
+\clearpage
+
+\begin{figure}[h]
+  \begin{minipage}[h]{.50\textwidth}
+    \includegraphics[width=1\textwidth]{img/ch3/dbscan_eps}
+  \end{minipage}
+  \begin{minipage}[h]{.50\textwidth}    
+    \includegraphics[width=1\textwidth]{img/ch3/dbscan_eps2}
+  \end{minipage}
+\end{figure}
+
+From the plot on the left we can see that all the curves have an elbow at $x$ close to $8000$, for this value of $x$ the corresponding \textit{epsilon} is $0.05$.
+
+\medskip
+
+\begin{figure}[h]
+  \begin{minipage}[h]{.50\textwidth}
+To choose the best value of \textit{min-pts} now we can fix \textit{epsilon} to $0.05$ and plot, for every \textit{min-pts} in range $[2, 50]$, the silhouette coefficient 
+  \end{minipage}
+  
+  \begin{minipage}[h]{.50\textwidth}    
+    \includegraphics[width=1\textwidth]{img/ch3/dbscan_silhouette}
+  \end{minipage}
+\end{figure}
+
 \subsection{Characterization and interpretation of the obtained clusters}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hierarchical clustering}

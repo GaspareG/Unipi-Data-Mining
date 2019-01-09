@@ -217,7 +217,7 @@ For these attributes the mode of the bin has also been reported as it is more re
 
     Regarding the duplicates, in the dataset there are only two identical records so we decide to not remove the single duplicate as it is not a big problem.
     Regarding the missing values we have $100$ records with missing sex, $127$ records, $1822$ records with missing status and $951$ records with missing age. We decided to not remove them as they are a big part of the dataset, instead we replace the missing ages with the average age (which is $35.49$). We set the missing statuses to \textit{others} as we think that it can include some particular cases (like engaged or cohabitant). We again set the missing educations to \textit{others} and the missing sex to female as they are the more frequents in the dataset. 
-    For the outliers we first normalize all the continuous attributes using the z-score algorithm (in this way we can visualize all the attributes in the same scale). Then we plot them in a boxplot and we can see that in the dataset only $3$ values are under the lower adjacent value, instead over the upper adjacent value we have $50$ limits, $211$ limits and an average of $895$ for the bill/payment amounts. We decided to not consider them outliers as we think that they represent the small percentage of rich people in the dataset (as they an high bill/payment amounts).
+    For the outliers we first normalize all the continuous attributes using the z-score algorithm (in this way we can visualize all the attributes in the same scale). Then we plot them in a boxplot and we can see that in the dataset only $3$ values are under the lower adjacent value, instead over the upper adjacent value we have $50$ limits, $211$ limits and an average of $895$ for the bill/payment amounts. As the attributes related to the payment amounts are the only one that have values over the $10$ times std, we decide to remove them to not have to work with outliers too high. After the cleaning part the dataset is composed of $9121$ customers. 
   \end{minipage}
 \end{figure}
 
@@ -234,9 +234,8 @@ As last transformation we have normalized all the continuous attribute using the
 \begin{figure}[h]
   \begin{minipage}[h]{.95\textwidth}
   
-    \begin{floatingfigure}[r]{0.55\textwidth}
-        \mbox{\includegraphics[width=0.55\textwidth]{img/ch2/correlation_matrix_ba}}
-        \caption{correlation matrix with \textit{ba\_mean}}
+    \begin{floatingfigure}[r]{0.50\textwidth}
+        \mbox{\includegraphics[width=0.50\textwidth]{img/ch2/correlation_matrix_ba}}
     \end{floatingfigure}
 
   Analyzing the correlation matrix of all the continuous attribute we can clearly see that all the attributes related to the bill amounts are strongly correlated.
@@ -244,10 +243,9 @@ As last transformation we have normalized all the continuous attribute using the
   All the pairs of bill amounts have a correlation between $0.8$ and $0.95$ so we decide to analize further this $6$ attributes.
     
   
-  We added a new attribute to the dataset called \textit{ba\_mean} calculated as the mean of all the bill amount for each customer.
+  So we add two new attributes to the dataset called \textit{ba\_mean} and \textit{pa\_mean} calculated as the mean of all the bill/payment amount for each customer.
   
-    
-  We again plot the correlation matrix (rescricted only to the bill amounts attributes) and we can see that the mean has a correlation between $0.93$ and $0.97$. For this reasons we drop all the six bill amounts attributes and introduce \textit{ba\_mean} as new attribute. 
+  We again plot the correlation matrix and we can see that both \textit{ba\_mean} and \textit{pa\_mean} have a high correlations with their relative attributes. For this reasons we drop all the twelve bill/payment amounts attributes and introduce their mean as new attributes. 
 
 
     

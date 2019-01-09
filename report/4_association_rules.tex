@@ -1,10 +1,28 @@
 \chapter{Association Rules Mining}
 
-Cose
-
 \section{Frequent patterns extraction with different parameters}
 
-Cose
+As we have a lot of categorical attributes with a lot of different values we don't have any frequent pattern with an high support. 
+
+The firsts frequent itemsets appears when we set the minimum support to $40\%$, in this case we have a total of 34 itemsets, the first 10 are:
+
+\begin{enumerate}
+  \item support: 49.55\%, items: ps-jun=0, ps-may=0
+  \item support: 48.99\%, items: ps-apr=0, ps-may=0
+  \item support: 48.44\%, items: sex=female, default=false
+  \item support: 48.21\%, items: ps-jul=0, ps-jun=0
+  \item support: 47.69\%, items: ps-sep=0, ps-aug=0
+  \item support: 47.58\%, items: ps-aug=0, ps-jul=0
+  \item support: 45.75\%, items: ps-apr=0, ps-jun=0
+  \item support: 45.42\%, items: ps-jul=0, ps-may=0
+  \item support: 45.31\%, items: ps-aug=0, ps-jun=0
+  \item support: 44.81\%, items: ps-may=0, default = false
+\end{enumerate}
+
+In particular we have $9$ itemsets with default equals to false and none with credit default equals to true.
+
+Choosing a minimum support of $30\%$ results in $131$ itemsets and half of them include the credit default equals to true.
+
 
 \section{Discussion of the most interesting frequent patterns}
 
@@ -25,4 +43,3 @@ Cose
 \section{Use the most meaningful rules to predict credit card defaults}
 
 Cose
-
