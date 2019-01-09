@@ -127,7 +127,7 @@ For the \textcolor{red}{Cluster 1} the customers in credit defaults have an high
 
 \medskip
 
-For the \textcolor{brown}{Cluster 5} the customers in credit defaults have an higher credit card limit and payment amount mean but a lower average age (compared to the customers not in credit default from the same cluster).
+For the \textcolor{brown}{Cluster 5} the customers in credit defaults have a lower age and bill/payment amount mean (compared to the customers not in credit default from the same cluster).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{DBSCAN}
