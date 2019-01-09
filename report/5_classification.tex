@@ -142,4 +142,20 @@ Halving the height of the model $2$ we obtain a simplier model that slightly imp
 
 \section{Decision trees interpretation}
 
-We decide to give an interpretation of Model 3 as it is the simplier and the best among the three different models. 
+We decide to give an interpretation of Model 3 as it is the simplier and the best among the three different models, to interpret the model we draw the first tree limited to the first three levels:
+
+  \begin{minipage}[h]{1\textwidth}
+    \includegraphics[width=1\textwidth]{img/ch5/model3}
+  \end{minipage}
+
+\smallskip
+
+From the tree we can see that the first node split the samples in a very unbalanced way ($88\%$ of the customers have a payment status in September equals or less than $1$). 
+
+\smallskip
+
+If we follow the False branch we are more likely to finish in a credit\_default=yes leaf, the only kind of customer with an high payment status in september who don't went in credit default is only the one with a low bill amount mean and a low credit card limit.
+
+\smallskip
+
+On ther other side, the True branch of the first split, we are more likely to finish in a credit\_default=not leaf, the only kind of customer in this branch who went in credit default is the one with an high payment status in the month of August, April and June.

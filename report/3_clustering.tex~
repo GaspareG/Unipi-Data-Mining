@@ -110,14 +110,13 @@ We can discuss each cluster individually to see the most interesting properties.
 
 We decided to analize further the obtained cluster, so we separate the customers with a positive credit default from the customers with a negative credit default and plot all the normalized centers of the continuous attributes in two separated parallel coordinates plots: 
 
-\begin{figure}[h]
-  \begin{minipage}[h]{.50\textwidth}
-    \includegraphics[width=1\textwidth]{img/ch3/kmeans_par_default_no}
-  \end{minipage}
-  \begin{minipage}[h]{.50\textwidth}    
-    \includegraphics[width=1\textwidth]{img/ch3/kmeans_par_default_yes}
-  \end{minipage}
-\end{figure}
+\begin{center}
+
+\includegraphics[width=.7\textwidth]{img/ch3/kmeans_par_default_no}
+
+\includegraphics[width=.7\textwidth]{img/ch3/kmeans_par_default_yes}
+
+\end{center}
 
 The most interesting cluster are \textcolor{red}{Cluster 1} and \textcolor{brown}{Cluster 5}, which are the ones with the highest and lowest positive credit default ratio, so we decided to analyze only these two clusters.
 
@@ -143,8 +142,6 @@ In order to execute the DBSCAN algorithm we need to choose the values of two par
 
 To choose the best value of \textit{epsilon} we have plotted, for each value of \textit{min-pts} in range $[2, 50]$ the sorted distances from the \textit{min-pts}-th point.
 
-\clearpage
-
 \begin{figure}[h]
   \begin{minipage}[h]{.50\textwidth}
     \includegraphics[width=1\textwidth]{img/ch3/dbscan_eps}
@@ -159,14 +156,21 @@ From the plot on the left we can see that all the curves have an elbow at $x$ cl
 \medskip
 
 \begin{figure}[h]
-  \begin{minipage}[h]{.50\textwidth}
-To choose the best value of \textit{min-pts} now we can fix \textit{epsilon} to $0.05$ and plot, for every \textit{min-pts} in range $[2, 50]$, the silhouette coefficient 
+
+  \begin{minipage}[h]{.40\textwidth}
+To choose the best value of \textit{min-pts} now we can fix \textit{epsilon} to $0.05$ and plot, for every \textit{min-pts} in range $[2, 50]$, the silhouette coefficients.
+
+  \smallskip
+
+  By analyzing the plot on the left and with some practical test over the dataset we decided to use \textit{min-pts=10}, in this way we obtained $10$ clusters.
   \end{minipage}
-  
-  \begin{minipage}[h]{.50\textwidth}    
+  \begin{minipage}[h]{.60\textwidth}    
     \includegraphics[width=1\textwidth]{img/ch3/dbscan_silhouette}
   \end{minipage}
+  
 \end{figure}
+
+\clearpage
 
 \subsection{Characterization and interpretation of the obtained clusters}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
